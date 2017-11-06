@@ -1,0 +1,149 @@
+<aside id="left-panel">
+
+  <!-- User info -->
+  <sa-login-info></sa-login-info>
+  <!-- end user info -->
+
+  <nav>
+    <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+    Please note that these links work a bit different than
+    traditional href="" links. See documentation for details.
+    -->
+
+    <ul saSmartMenu>
+      <li>
+        <a title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span
+          class="menu-item-parent">{{'Dashboard' | i18n}}</span></a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/dashboard/analytics"><i class="fa fa-area-chart"></i>
+              {{'Analytics Dashboard' | i18n}}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="top-menu-invisible"> 
+        <a href="#">
+          <i class="fa fa-lg fa-fw fa-cogs"></i> 
+          <span class="menu-item-parent">{{'Admin' | i18n}}</span>
+        </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/user-management"><i class="fa fa-user"></i>
+              {{'User Management' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/group-user"><i class="fa fa-users"></i>
+              {{'Group User' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/group-privilage"><i class="fa fa-user-plus"></i>
+              {{'Group Privilage' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/user-session"><i class="fa fa-user-times"></i>
+              {{'User Session' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/user-history-login"><i class="fa fa-user"></i>
+              {{'User History Login' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/master-cabang"><i class="fa fa-home"></i>
+              {{'Master Cabang' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/global-parameter"><i class="fa fa-list-alt"></i>
+              {{'Global Parameter' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/audit-log"><i class="fa fa-file-archive-o"></i>
+              {{'Audit Log' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/regional-settings"><i class="fa fa-map-marker"></i>
+              {{'Regional Settings' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/report"><i class="fa fa-book"></i>
+              {{'Report' | i18n}}</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="top-menu-invisible">
+          <a href="#">
+            <i class="fa fa-lg fa-fw fa-cube"></i> 
+            <span class="menu-item-parent">{{'Master Data' | i18n}}</span>
+          </a>
+          <ul>
+            <!-- <li routerLinkActive="active">
+                <a routerLink="/masterdata/clinic"><i class="fa fa-hospital-o"></i>
+                  {{'Clinicx' | i18n}}</a>
+            </li> -->
+            <li routerLinkActive="active">
+                <a routerLink="/masterdata/klinik"><i class="fa fa-hospital-o"></i>
+                  {{'Clinic' | i18n}}</a>
+            </li>
+            <!-- <li routerLinkActive="active">
+              <a routerLink="/masterdata/kategori"><i class="fa fa-list-ul"></i>
+                {{'kategory' | i18n}}</a>
+            </li> -->
+            <li routerLinkActive="active">
+              <a routerLink="/masterdata/category"><i class="fa fa-list-ul"></i>
+                {{'Category' | i18n}}</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/masterdata/docter"><i class="fa fa-user-md"></i>
+                {{'Docter/Collega' | i18n}}</a>
+            </li>
+            <li routerLinkActive="active">
+                <a routerLink="/masterdata/customer"><i class="fa fa-wheelchair"></i>
+                  {{'Customer' | i18n}}</a>
+              </li>
+            <li routerLinkActive="active">
+              <a routerLink="/masterdata/pets"><i class="fa fa-linux"></i>
+                {{'Pets' | i18n}}</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="top-menu-invisible">
+            <a href="#">
+              <i class="fa fa-lg fa-fw fa-cube"></i> 
+              <span class="menu-item-parent">{{'Transaction' | i18n}}</span>
+            </a>
+            <ul>
+              <li routerLinkActive="active">
+                <a routerLink="/transaction/registration"><i class="fa fa-book"></i>
+                  {{'Registration' | i18n}}</a>
+              </li>
+              <li routerLinkActive="active">
+                <a routerLink="/transaction/medicalrecord"><i class="fa fa-stethoscope"></i>
+                  {{'Medical Record' | i18n}}</a>
+              </li>
+              <li routerLinkActive="active">
+                <a routerLink="/transaction/test-lab"><i class="fa fa-medkit"></i>
+                  {{'Test Lab' | i18n}}</a>
+              </li>
+              <li routerLinkActive="active">
+                  <a routerLink="/transaction/hospitality"><i class="fa fa-hospital-o"></i>
+                    {{'Hospitality' | i18n}}</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a routerLink="/transaction/cashier"><i class="fa fa-cc-visa"></i>
+                    {{'Cashier' | i18n}}</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/transaction/medical-record-inquiry"><i class="fa fa-bookmark"></i>
+                      {{'Medical Record Inquiry' | i18n}}</a>
+                </li>
+            </ul>
+          </li>
+    </ul>
+    
+    <!-- <aside-chat></aside-chat> -->
+  </nav>
+
+  <sa-minify-menu></sa-minify-menu>
+
+</aside>

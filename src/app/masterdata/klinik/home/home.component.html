@@ -1,0 +1,52 @@
+<div id="content">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Main content -->
+      <div class="row">
+        <div class="col-md-2">
+              <a class="btn btn-danger" routerLink="/masterdata/klinik/add"  routerLinkActive="active">
+                <i class="fa fa-plus"></i>
+                Add</a> 
+          </div>
+        </div>
+
+    <sa-widget [editbutton]="false" color="blueDark">  
+        <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+          <h2>Clinic </h2></header>
+        <div>
+              <div class="widget-body no-padding">
+                <table class="dataTable responsive table table-condenced table-striped table-bordered has-tickbox">
+                  <thead>
+                    <tr>
+                      <th [ngStyle]="{width:'10%'}">Action</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >branch id</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >branch code</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >branch name</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >description</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >active status</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >branch level</th>
+                      <th data-class="expand" [ngStyle]="{width:'10%'}" >postal code</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let clinic of clinics">
+                        <td [ngStyle]="{width:'10%'}">
+                            <a class="btn btn-info btn-xs btn-view" routerLink="/masterdata/klinik/show/{{clinic.branch_id}}"  routerLinkActive="active"><i class="fa fa-eye"></i></a> 
+                            <a class="btn btn-success btn-xs btn-view" routerLink="/masterdata/klinik/edit/{{clinic.branch_id}}" routerLinkActive="active"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger btn-xs btn-view" (click)="deleteClinic(clinic.branch_id)"><i class="fa fa-close"></i></a>
+                        </td>
+                        <td>{{clinic.branch_id}}</td>
+                        <td>{{clinic.branch_code}}</td>
+                        <td>{{clinic.branch_name}}</td>
+                        <td>{{clinic.description}}</td>
+                        <td>{{clinic.active_status}}</td>
+                        <td>{{clinic.branch_level}}</td>
+                        <td>{{clinic.postal_code}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </sa-widget>
+  </div>
+</div>  

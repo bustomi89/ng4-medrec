@@ -1,0 +1,61 @@
+<div class="panel panel-default" *ngIf=category>
+    <div class="panel-heading">
+            <a class="btn btn-info" (click)="goBack()">
+              <i class="fa fa-plus-square-o"></i>
+              Back</a> 
+              <!-- <b>View Category</b> -->
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" >
+        <div class="form-group">
+          <label for="emp_name" class="col-sm-2 control-label">Category ID : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.categoryId}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="position" class="col-sm-2 control-label">Category Type : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.categoryType}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="department" class="col-sm-2 control-label">Category Name : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.categoryName}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Category Code : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.categoryCode}}</p>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Description : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.description}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Size : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.size}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Price : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.price}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Discount : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{category.discount}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

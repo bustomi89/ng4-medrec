@@ -1,0 +1,55 @@
+<div class="panel panel-default" *ngIf=clinic>
+    <div class="panel-heading">
+            <a class="btn btn-info" (click)="goBack()">
+              <i class="fa fa-plus-square-o"></i>
+              Back</a> 
+              <!-- <b>View Category</b> -->
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" >
+              <!-- <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">branch_id: </label>
+                  <div class="col-sm-9">
+                    {{clinic.branch_id" name="branch_id" >
+                  </div>
+              </div> -->
+              <input type="hidden" class="form-control" [(ngModel)]="clinic.branch_id" name="branch_id" >
+              <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">branch code: </label>
+                  <div class="col-sm-9">
+                      <p class="form-control">{{clinic.branch_code}}</p>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">branch name: </label>
+                  <div class="col-sm-9">
+                      <p class="form-control">{{clinic.branch_name}}</p>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">description: </label>
+                  <div class="col-sm-9">
+                      <p class="form-control">{{clinic.description}}</p>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">active status: </label>
+                  <div class="col-sm-9">
+                      <p class="form-control">{{clinic.active_status}}</p>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">branch level: </label>
+                  <div class="col-sm-9">
+                      <p class="form-control">{{clinic.branch_level}}</p>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="position" class="col-sm-2 control-label">postal_code: </label>
+                  <div class="col-sm-9">
+                      <p class="form-control">{{clinic.postal_code}}</p>
+                  </div>
+                </div>
+      </form>
+    </div>
+  </div>
