@@ -1,3 +1,158 @@
-<p>
-  home works!
-</p>
+<div id="content">
+    <div class="row col-md-12">
+        <div class="col-md-2">
+            <a class="btn btn-danger" routerLink="/masterdata/pet/add"  routerLinkActive="active">
+            <i class="fa fa-plus"></i>
+            Add</a> 
+        </div>
+    </div>
+    
+    <div id="table-grid" class="col-md-12">
+  
+    <sa-widgets-grid>
+            <div class="row">
+                <article class="col-sm-12 col-md-12 col-lg-12">
+                    <sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
+                            <header>
+                                <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                <h2>Pet</h2>
+                            </header>
+                            <div>
+                                <div class="widget-body no-padding">
+                                        <div class="lightest-gray-bg">
+                                                <div class="row" style="padding: 8px 12px">  
+                                                    <div class="col-md-6">
+                                                        <div class="input-group">
+                                                            <div class="icon-addon">
+                                                                <input type="text" id="search" class="form-control"  [(ngModel)]="controls.filter"
+                                                                    placeholder='Type to filter the table...'
+                                                                    (keyup)='updateFilter($event)'> 
+                                                                <label style="z-index: 22" for="search" class="fa fa-search" rel="tooltip" title="search"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ngx-datatable
+                                          
+                                                style="height: 50vh" 
+                                          
+                                                  #myTable
+                                                  class='table-striped'
+                                                  [columnMode]="'force'"
+                                                  [headerHeight]="40"
+                                                  [footerHeight]="45"
+                                                  [rowHeight]="35"
+                                                  [scrollbarV]="35"
+                                                  [rows]="rows"
+                                          
+                                                  [cssClasses]= "{
+                                                      sortAscending: 'fa fa-sort-up',
+                                                      sortDescending: 'fa fa-sort-down',
+                                                      pagerLeftArrow: 'fa  fa-angle-left',
+                                                      pagerRightArrow: 'fa fa-angle-right',
+                                                      pagerPrevious: 'fa fa-angle-double-left',
+                                                      pagerNext: 'fa fa-angle-double-right'
+                                                    }"
+                                                  (page)="onPage($event)"
+                                                  [selected]="selected"
+                                                  [selectionType]="'single'"
+                                                 
+                                                  (select)='onSelect($event)'>
+                                                    
+  
+                                                  <!-- Row Detail Template -->
+                                                  <ngx-datatable-row-detail [rowHeight]="120" #myDetailRow (toggle)="onDetailToggle($event)">
+                                                    <ng-template let-row="row" ngx-datatable-row-detail-template>
+                                                      <div>
+                                                        <div>
+                                                            <strong class="contro-label">Pet Id</strong>
+                                                            {{row.pet_id}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Doctor</strong>
+                                                            {{row.doctor_id}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Species</strong>
+                                                            {{row.species_id}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Pet Name</strong>
+                                                            {{row.pet_name}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Pet Sex</strong>
+                                                            {{row.pet_sex}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Birthdate</strong>
+                                                            {{row.pet_birthdate}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Age</strong>
+                                                            {{row.pet_age}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Breed</strong>
+                                                            {{row.breed}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Color</strong>
+                                                            {{row.color}}
+                                                        </div>
+                                                      </div>
+                                                    </ng-template>
+                                                  </ngx-datatable-row-detail>
+                                                  <!-- Column Templates -->
+                                                   <ngx-datatable-column
+                                                    [width]="105"
+                                                    [resizeable]="false"
+                                                    [sortable]="false"
+                                                    [draggable]="false"
+                                                    [canAutoResize]="false">
+                                                    <ng-template class="xxxx" let-row="row" ngx-datatable-cell-template>
+                                                        <a class="btn btn-info btn-xs btn-view fa"
+                                                            [class.fa-plus]="!row.$$expanded"
+                                                            [class.fa-minus]="row.$$expanded"
+                                                            title="Expand/Collapse Row"
+                                                            (click)="toggleExpandRow(row)">
+                                                        </a>
+                                                        <a class="btn btn-success btn-xs btn-view fa"
+                                                            [class.fa-edit]="true"
+                                                            title="edit"
+                                                            routerLink="/masterdata/pet/edit/{{row.pet_id}}" routerLinkActive="active"
+                                                            >
+                                                        </a>
+                                                        <a class="btn btn-danger btn-xs btn-view fa"
+                                                            [class.fa-remove]="true"
+                                                            title="delete"
+                                                            (click)="toggleDelete(row)">
+                                                        </a>
+                                                    </ng-template>
+                                                  </ngx-datatable-column>
+                                                  <ngx-datatable-column name="pet_id" [width]="300">
+                                                    <ng-template let-value="value" ngx-datatable-cell-template>
+                                                      <strong>{{value}}</strong>
+                                                    </ng-template>
+                                                  </ngx-datatable-column>
+                                                  <ngx-datatable-column name="pet_name" [width]="300">
+                                                    <ng-template let-value="value" ngx-datatable-cell-template>
+                                                      <strong>{{value}}</strong>
+                                                    </ng-template>
+                                                  </ngx-datatable-column>
+                                                  <ngx-datatable-column name="doctor_id" [width]="300">
+                                                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                        <i [innerHTML]="row['doctor_id']"></i>
+                                                    </ng-template>
+                                                  </ngx-datatable-column>
+                                                </ngx-datatable>
+                                              </div>
+                                </div>
+                            </div>
+                    </sa-widget>
+                </article>
+            </div>
+    </sa-widgets-grid>
+    
+    </div>
+  </div>

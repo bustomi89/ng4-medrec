@@ -18,13 +18,13 @@ export class AddComponent implements OnInit {
     }
   
   model = new CustomerModel();
-    addCustomer(){
-        this._customerService
-          .createCustomer(this.model)
-          .subscribe(()=> this.goBack());
-    }
-     goBack(){
-      this.router.navigate(['/masterdata/customer/home']);
-    }
+  addCustomer(){
+      this._customerService
+        .createCustomer(this.model)
+        .subscribe(()=> this.goBack());
+  }
+    goBack(){
+    this.router.navigate(['/masterdata/customer/home']);
+  }
 
 }

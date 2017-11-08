@@ -1,3 +1,73 @@
-<p>
-  show works!
-</p>
+<div class="panel panel-default" *ngIf=pet>
+    <div class="panel-heading">
+            <a class="btn btn-info" (click)="goBack()">
+              <i class="fa fa-plus-square-o"></i>
+              Back</a> 
+              <!-- <b>View Pet</b> -->
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" >
+        <div class="form-group">
+          <label for="emp_name" class="col-sm-2 control-label">Pet ID : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.pet_id}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="position" class="col-sm-2 control-label">Customer Id : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.customer_id}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="department" class="col-sm-2 control-label">Doctor : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.doctor_id}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Species : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.species_id}}</p>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Pet Name : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.pet_name}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Pet Sex : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.pet_sex}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Birthdate : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.pet_birthdate}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Age : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.pet_age}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Breed : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.breed}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Color : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{pet.color}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

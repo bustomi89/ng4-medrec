@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PetModel } from 'app/masterdata/pet/pet.model';
+import { PetService } from 'app/masterdata/pet/pet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _petService: PetService,
+     private router: Router) { }
 
   ngOnInit() {
+  }
+
+  model = new PetModel();
+  addCustomer(){
+      this._petService
+        .createPet(this.model)
+        .subscribe(()=> this.goBack());
+  }
+    goBack(){
+    this.router.navigate(['/masterdata/customer/home']);
   }
 
 }

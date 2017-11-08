@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
 
   toggleDelete(row) {
       this._customerService
-        .deleteCustomerById(row.customerId)
+        .deleteCustomerById(row.customer_id)
         .subscribe(() => {
           this.getCustomer();
         } )
