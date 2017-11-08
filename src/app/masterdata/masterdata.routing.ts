@@ -24,11 +24,11 @@ export const routes: Routes = [
      
   // }
    //,
-  // {
-  //   path: 'docter',
-  //   loadChildren:'./docter/docter.module#DocterModule',
+  {
+    path: 'doctor',
+    loadChildren:'./doctor/doctor.module#DoctorModule',
      
-  // },
+  },
   {
     path: 'customer',
     loadChildren:'./customer/customer.module#CustomerModule',

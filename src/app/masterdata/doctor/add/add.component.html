@@ -1,3 +1,58 @@
-<p>
-  add works!
-</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a class="btn btn-info" (click)="goBack()">
+            <i class="fa fa-plus-square-o"></i>
+            Back</a> 
+    </div>
+  <div class="panel-body">
+    <form class="form-horizontal" (submit)="addDoctor()">
+  <input type="hidden" class="form-control"  [(ngModel)]="model.doctor_id" name="doctor_id">
+  <div class="form-group">
+    <label for="position" class="col-sm-2 control-label">Doctor name : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.doctor_name" name="doctor_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="department" class="col-sm-2 control-label">Address : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  [(ngModel)]="model.doctor_address" name="doctor_address">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="salary" class="col-sm-2 control-label">Email : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  [(ngModel)]="model.doctor_email" name="doctor_email">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="salary" class="col-sm-2 control-label">Handphone : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  [(ngModel)]="model.doctor_handphone" name="doctor_handphone">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="salary" class="col-sm-2 control-label">SIP : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  [(ngModel)]="model.doctor_sip" name="doctor_sip">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="salary" class="col-sm-2 control-label">Code : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  [(ngModel)]="model.doctor_code" name="doctor_code">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <button type="submit" class="btn btn-success">Save</button>
+    </div>
+   
+  </div>
+  </form>
+  
+  </div>
+  </div>
+  
