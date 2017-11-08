@@ -1,3 +1,61 @@
-<p>
-  show works!
-</p>
+<div class="panel panel-default" *ngIf=customer>
+  <div class="panel-heading">
+          <a class="btn btn-info" (click)="goBack()">
+            <i class="fa fa-plus-square-o"></i>
+            Back</a> 
+            <!-- <b>View Customer</b> -->
+  </div>
+  <div class="panel-body">
+      <form class="form-horizontal" >
+      <div class="form-group">
+        <label for="emp_name" class="col-sm-2 control-label">Customer ID : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.customer_id}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="position" class="col-sm-2 control-label">Customer Name : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.customer_name}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="department" class="col-sm-2 control-label">Address : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.client_address}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">Postal Code : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.postal_code}}</p>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">Phone Number : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.phone_number}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">Identity Number : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.identity_number}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">Reference : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.reference}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">Deposite : </label>
+        <div class="col-sm-9">
+          <p class="form-control">{{customer.deposite}}</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

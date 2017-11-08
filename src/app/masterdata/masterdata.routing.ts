@@ -17,7 +17,7 @@ export const routes: Routes = [
   {
     path: 'category',
     loadChildren:'./category/category.module#CategoryModule',
-  }//,
+  },
   // {
   //   path: 'kategori',
   //   loadChildren:'./kategori/kategori.module#KategoriModule',
@@ -29,16 +29,15 @@ export const routes: Routes = [
   //   loadChildren:'./docter/docter.module#DocterModule',
      
   // },
-  // {
-  //   path: 'customer',
-  //   loadChildren:'./customer/customer.module#CustomerModule',
+  {
+    path: 'customer',
+    loadChildren:'./customer/customer.module#CustomerModule',
      
-  // },
-  // {
-  //   path: 'pets',
-  //   loadChildren:'./pets/pets.module#PetsModule',
-     
-  // }
+  },
+  {
+    path: 'pet',
+    loadChildren:'./pet/pet.module#PetModule',
+  }
 ];
 
 export const routing = RouterModule.forChild(routes);
