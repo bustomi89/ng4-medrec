@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild, Input } from '@angular/core';
-import { CategoriService } from 'app/masterdata/category/category.service';
+import { ClinicService } from 'app/masterdata/clinic/clinic.service';
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
-import { CategoryModel } from 'app/masterdata/category/category.model';
-import { EditComponent } from 'app/masterdata/category/edit/edit.component';
+import { ClinicModel } from 'app/masterdata/clinic/clinic.model';
+import { EditComponent } from 'app/masterdata/clinic/edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +13,13 @@ import { EditComponent } from 'app/masterdata/category/edit/edit.component';
 })
 export class HomeComponent implements OnInit {
 
-  indexCategoryId : number;
+  indexClinicId : number;
   showForm : boolean;
 
-  categoryEdit: CategoryModel;
+  clinicEdit: ClinicModel;
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
-  @ViewChild(EditComponent) editCategory : EditComponent;
+  @ViewChild(EditComponent) editClinic : EditComponent;
   
     rows = [];
     temp = [];
@@ -39,28 +39,27 @@ export class HomeComponent implements OnInit {
     }
   
     columns = [
-      { prop: 'categoryId' },
-      { name: 'categoryType' },
-      { name: 'categoryName' },
-      { name: 'categoryCode' },
+      { prop: 'branchId' },
+      { name: 'branchCode' },
+      { name: 'branchName' },
       { name: 'description' },
-      { name: 'size' },
-      { name: 'price' },
-      { name: 'discount' },
+      { name: 'activeStatus' },
+      { name: 'branchLevel' },
+      { name: 'postalCode' },
     ];
   
    constructor(
-      private _categoriService:CategoriService
+      private _clinicService:ClinicService
     ) {
   
     }
   
     ngOnInit() {
-      this.getCategories();
+      this.getClinices();
     }
 
-    getCategories(){
-      this._categoriService.getAllCategorys()
+    getClinices(){
+      this._clinicService.getAllClinics()
           .subscribe(data=> {
 
             // cache our list
@@ -73,37 +72,35 @@ export class HomeComponent implements OnInit {
           } )
     }
 
-    getRefreshCategories($event){
+    getRefreshClinices($event){
         // script untuk nambah json ke datatables
         // this.rows.push($event);
         // this.rows = [...this.rows]
-      if($event.categoryId == null || $event.categoryId == 0 ){
+      if($event.branchId == null || $event.branchId == 0 ){
           
           this.rows.push($event);
           // this.rows = [...this.rows]; 
 
       }else{
             for(let i=0; i < this.temp.length; i++){
-                if (this.temp[i].categoryId == $event.categoryId){
-                      this.temp[i].categoryType = $event.categoryType;
-                      this.temp[i].categoryName = $event.categoryName;
-                      this.temp[i].categoryCode = $event.categoryCode;
+                if (this.temp[i].branchId == $event.branchId){
+                      this.temp[i].branchCode = $event.branchCode;
+                      this.temp[i].branchName = $event.branchName;
                       this.temp[i].description = $event.description;
-                      this.temp[i].size = $event.size;
-                      this.temp[i].price = $event.price;
-                      this.temp[i].discount = $event.discount;
+                      this.temp[i].activeStatus = $event.activeStatus;
+                      this.temp[i].branchLevel = $event.branchLevel;
+                      this.temp[i].postalCode = $event.postalCode;
                 }
             }
 
             for(let i=0; i < this.rows.length; i++){
-                if (this.rows[i].categoryId == $event.categoryId){
-                      this.rows[i].categoryType = $event.categoryType;
-                      this.rows[i].categoryName = $event.categoryName;
-                      this.rows[i].categoryCode = $event.categoryCode;
-                      this.rows[i].description = $event.description;
-                      this.rows[i].size = $event.size;
-                      this.rows[i].price = $event.price;
-                      this.rows[i].discount = $event.discount;
+              if (this.rows[i].branchId == $event.branchId){
+                  this.rows[i].branchCode = $event.branchCode;
+                  this.rows[i].branchName = $event.branchName;
+                  this.rows[i].description = $event.description;
+                  this.rows[i].activeStatus = $event.activeStatus;
+                  this.rows[i].branchLevel = $event.branchLevel;
+                  this.rows[i].postalCode = $event.postalCode;
                 }
             }
       }
@@ -118,7 +115,7 @@ export class HomeComponent implements OnInit {
       const temp = this.temp.filter(function(d) {
         console.log("d "+JSON.stringify(d));
 
-        return !val || ['categoryId', 'categoryType', 'categoryName','categoryCode','description','size','price','discount'].some((field: any)=>{
+        return !val || ['branchId', 'branchCode', 'branchName','description','activeStatus','branchLevel','postalCode'].some((field: any)=>{
           
           return ((d[field] === null) ? '' : d[field]).toString().toLowerCase().indexOf(val) !== -1
         }) 
@@ -156,9 +153,10 @@ export class HomeComponent implements OnInit {
     onActivate(event){
       // console.log("onActivate "+event);
     }
+
     onSelect(event){
       this.statusFormEdit = true;
-      this.indexCategoryId = event.selected[0].categoryId;
+      this.indexClinicId = event.selected[0].branchId;
     }
 
     onPage(event) {
@@ -173,10 +171,10 @@ export class HomeComponent implements OnInit {
     }
 
     toggleDelete(row) {
-        this._categoriService
-          .deleteCategoryById(row.categoryId)
+        this._clinicService
+          .deleteClinicById(row.branchId)
           .subscribe(() => {
-            this.getCategories();
+            this.getClinices();
           } )
     }
 
@@ -185,7 +183,7 @@ export class HomeComponent implements OnInit {
         this.statusFormEdit = true;
       } else {
         this.statusFormEdit = true;
-        this.editCategory.tonggleAddReset();
+        this.editClinic.tonggleAddReset();
       }
       
     }

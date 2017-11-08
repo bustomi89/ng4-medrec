@@ -1,9 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <!-- <a class="btn btn-info" (click)="goBack()">
+        <!-- <a class="btn btn-info" (click)="tonggleAddReset()"> 
             <i class="fa fa-plus-square-o"></i>
-            close</a>  -->
-            Form Input Category
+            Reset</a>  -->
+            <!-- Form Input Category -->
+            <b>{{statusProcess}}</b>
     </div>
     <div class="panel-body">
       <form class="form-horizontal" (submit)="updateCategory()">
@@ -47,8 +48,8 @@
   
     <div class="form-group">
       <div class="text-center">
-        <button type="submit" class="btn btn-success">Update</button>
-        <!-- <a  class="btn btn-info" (click)="goBack()">Cancel</a> -->
+        <button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Save</button>
+        <button class="btn btn-info" (click)="tonggleAddReset()"><i class="fa fa-plus-square-o"></i> Reset</button> 
       </div>
      
     </div>

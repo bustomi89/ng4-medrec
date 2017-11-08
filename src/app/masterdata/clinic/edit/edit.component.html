@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <!-- <a class="btn btn-info" (click)="tonggleAddReset()"> 
+            <i class="fa fa-plus-square-o"></i>
+            Reset</a>  -->
+            <!-- Form Input Clinic -->
+            <b>{{statusProcess}}</b>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" (submit)="updateClinic()">
+        <!-- <div class="form-group">
+          <label for="emp_name" class="col-sm-2 control-label">Clinic ID : </label>
+          <div class="col-sm-9">
+            
+          </div>
+        </div> -->
+        <input type="hidden" class="form-control"  [(ngModel)]="clinic.branchId" name="clinicId">
+
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="position" class="control-label small"><b>Clinic Code</b></label>
+            <input type="text" class="form-control" [(ngModel)]="clinic.branchCode" name="branchCode">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="department" class="control-label small"><b>Clinic Name</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="clinic.branchName" name="branchName">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Description</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="clinic.description" name="description">
+        </div>
+      
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Status</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="clinic.activeStatus" name="activeStatus">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Branch Level</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="clinic.branchLevel" name="branchLevel">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Postal Code</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="clinic.postalCode" name="postalCode">
+        </div>
+  
+    <div class="form-group">
+      <div class="text-center">
+        <button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Save</button>
+        <button class="btn btn-info" (click)="tonggleAddReset()"><i class="fa fa-plus-square-o"></i> Reset</button> 
+      </div>
+     
+    </div>
+  </form>
+  
+    </div>
+  </div>
+  

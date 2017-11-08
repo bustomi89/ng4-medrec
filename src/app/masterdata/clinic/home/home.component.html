@@ -1,7 +1,7 @@
 <div id="content">
     <div class="row col-md-12">
         <div class="col-md-2">
-            <!-- <a class="btn btn-danger" routerLink="/masterdata/category/add"  routerLinkActive="active"> -->
+            <!-- <a class="btn btn-danger" routerLink="/masterdata/Clinic/add"  routerLinkActive="active"> -->
             <a class="btn btn-info" (click)="tonggleAdd()"> 
                 <i class="fa fa-plus"></i>
                 Add
@@ -18,7 +18,7 @@
                     <sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
                             <header>
                                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                                <h2>Category</h2>
+                                <h2>Clinic</h2>
                             </header>
                             <div>
                                 <div class="widget-body no-padding">
@@ -78,28 +78,32 @@
                                                     <ng-template let-row="row" ngx-datatable-row-detail-template>
                                                       <div>
                                                         <div>
-                                                            <strong class="contro-label">Category Id</strong>
-                                                            {{row.categoryId}}
+                                                            <strong class="contro-label">Clinic Id</strong>
+                                                            {{row.branchId}}
                                                         </div>
                                                         <div>
-                                                            <strong class="contro-label">Category Code</strong>
-                                                            {{row.categoryCode}}
+                                                            <strong class="contro-label">Clinic Code</strong>
+                                                            {{row.branchCode}}
                                                         </div>
                                                         <div>
-                                                            <strong class="contro-label">Size</strong>
-                                                            {{row.size}}
-                                                        </div>
-                                                        <div>
-                                                            <strong class="contro-label">Price</strong>
-                                                            {{row.price}}
-                                                        </div>
-                                                        <div>
-                                                            <strong class="contro-label">Discount</strong>
-                                                            {{row.discount}}
+                                                            <strong class="contro-label">Branch Name</strong>
+                                                            {{row.branchName}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Description</strong>
                                                             {{row.description}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Status</strong>
+                                                            {{row.activeStatus}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Level</strong>
+                                                            {{row.branchLevel}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">Postal Code</strong>
+                                                            {{row.postalCode}}
                                                         </div>
                                                       </div>
                                                     </ng-template>
@@ -115,7 +119,7 @@
                                                         <!-- <a class="btn btn-info btn-xs btn-view fa"
                                                             [class.fa-eye]="true"
                                                             title="view"
-                                                            routerLink="/masterdata/category/show/{{row.categoryId}}"  routerLinkActive="active"
+                                                            routerLink="/masterdata/Clinic/show/{{row.ClinicId}}"  routerLinkActive="active"
                                                             >
                                                         </a> -->
                                                         <a class="btn btn-info btn-xs btn-view fa"
@@ -127,14 +131,14 @@
                                                         <!-- <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
-                                                            routerLink="/masterdata/category/edit/{{row.categoryId}}" routerLinkActive="active"
+                                                            routerLink="/masterdata/Clinic/edit/{{row.ClinicId}}" routerLinkActive="active"
                                                             >
                                                         </a> -->
                                                         <!-- <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
                                                             style="cursor: pointer;"
-                                                            [routerLink]="[indexCategoryId]" routerLinkActive="active"
+                                                            [routerLink]="[indexClinicId]" routerLinkActive="active"
                                                             >
                                                         </a> -->
                                                         <!-- <a class="btn btn-success btn-xs btn-view fa"
@@ -160,19 +164,19 @@
                                                       <strong>{{row.$$expanded === 1}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column> -->
-                                                  <!-- <ngx-datatable-column name="categoryId" [width]="300">
+                                                  <!-- <ngx-datatable-column name="ClinicId" [width]="300">
                                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                                       <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column> -->
-                                                  <ngx-datatable-column name="categoryType" [width]="300">
-                                                    <ng-template let-value="value" ngx-datatable-cell-template>
-                                                      <strong>{{value}}</strong>
+                                                  <ngx-datatable-column name="branchName" [width]="300">
+                                                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                        <i [innerHTML]="row['branchName']"></i>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="categoryName" [width]="300">
+                                                  <ngx-datatable-column name="description" [width]="300">
                                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                                        <i [innerHTML]="row['categoryName']"></i>
+                                                        <i [innerHTML]="row['description']"></i>
                                                     </ng-template>
                                                   </ngx-datatable-column>
                                                 </ngx-datatable>
@@ -187,12 +191,12 @@
     </div>
     <!-- <div id="form-input" class="col-md-6"> -->
     <div id="form-input" [class.col-md-6]="statusFormEdit">
-        <!-- <div *ngIf='indexCategoryId' > -->
+        <!-- <div *ngIf='indexClinicId' > -->
         <div *ngIf='statusFormEdit' >
         <!-- <div > -->
             <app-edit 
-                [indexCategoryId]="indexCategoryId"
-                (eventCategories)="getRefreshCategories($event)"
+                [indexClinicId]="indexClinicId"
+                (eventClinices)="getRefreshClinices($event)"
             ></app-edit>
         </div>
     </div>
@@ -204,7 +208,7 @@
                 <sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
                         <header>
                             <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                            <h2>Category</h2>
+                            <h2>Clinic</h2>
                         </header>
                         <div>
                             <div class="widget-body no-padding">
