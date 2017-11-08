@@ -1,16 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CategoriService } from 'app/masterdata/category/category.service';
 import { CategoryModel } from 'app/masterdata/category/category.model';
-
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit,  OnChanges{
   
   @Input() indexCategoryId: number;
+
+  @Output() eventCategories = new EventEmitter<CategoryModel>();
 
     constructor(
       private router: Router,
@@ -22,16 +23,19 @@ export class EditComponent implements OnInit {
       this.route.params
       .subscribe(
         (params: Params) => {
-          this.indexCategoryId = +params['id']; // casting dari string ke number
+          // this.indexCategoryId = +params['id']; // casting dari string ke number
           this.getSingleCategory(this.indexCategoryId);
         }
       )
-
         // this.getSingleCategory(this.route.snapshot.params['id']);
+    }
+
+    ngOnChanges(change: SimpleChanges): void {
+      this.getSingleCategory(change.indexCategoryId.currentValue);
     }
   
     //model:any={};
-    model = new CategoryModel();
+    category = new CategoryModel();
     
     
   
@@ -39,15 +43,16 @@ export class EditComponent implements OnInit {
       this._categoriService
         .getCategoryById(id)
         .subscribe(category =>{
-            this.model = category;
+            this.category = category;
             })
     };
     
     updateCategory(){
         this._categoriService
-          .updateCategory(this.model)
+          .updateCategory(this.category)
           .subscribe(()=> this.goBack());
-          this._categoriService.getAllCategorys();
+
+          this.eventCategories.emit(this.category);
     }
    
      goBack(){

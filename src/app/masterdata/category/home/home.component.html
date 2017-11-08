@@ -7,7 +7,8 @@
         </div>
     </div>
     
-    <div id="table-grid" class="col-md-12">
+    <!-- <div id="table-grid" [class.col-md-6]="statusFormEdit" [class.col-md-12]="statusFormEdit"> -->
+    <div id="table-grid" class="col-md-6">
 
     <sa-widgets-grid>
             <div class="row">
@@ -121,12 +122,12 @@
                                                             title="Expand/Collapse Row"
                                                             (click)="toggleExpandRow(row)">
                                                         </a>
-                                                        <a class="btn btn-success btn-xs btn-view fa"
+                                                        <!-- <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
                                                             routerLink="/masterdata/category/edit/{{row.categoryId}}" routerLinkActive="active"
                                                             >
-                                                        </a>
+                                                        </a> -->
                                                         <!-- <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
@@ -182,9 +183,15 @@
     </sa-widgets-grid>
     
     </div>
-    <!-- <div id="form-input" class="col-md-6">
-        <app-edit [indexCategoryId]="indexCategoryId"></app-edit>
-    </div> -->
+    <div id="form-input" class="col-md-6">
+    <!-- <div id="form-input" [class.col-md-6]="statusFormEdit"> -->
+        <div *ngIf='indexCategoryId'>
+            <app-edit 
+                [indexCategoryId]="indexCategoryId"
+                (eventCategories)="getRefreshCategories($event)"
+            ></app-edit>
+        </div>
+    </div>
 </div>
 
 <!-- <sa-widgets-grid>
