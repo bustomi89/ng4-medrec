@@ -1,13 +1,9 @@
 <div class="panel panel-default">
-    <!-- <div class="panel-heading">
-        <a class="btn btn-info" (click)="goBack()">
-            <i class="fa fa-plus-square-o"></i>
-            Back</a> 
-    </div> -->
     <div class="panel-heading">
-        <a class="btn btn-info" (click)="goBack()">
+        <!-- <a class="btn btn-info" (click)="goBack()">
             <i class="fa fa-plus-square-o"></i>
-            Cancel</a> 
+            close</a>  -->
+            Form Input Category
     </div>
     <div class="panel-body">
       <form class="form-horizontal" (submit)="updateCategory()">
@@ -17,54 +13,40 @@
             
           </div>
         </div> -->
-  
-        <input type="hidden" class="form-control"  [(ngModel)]="model.categoryId" name="categoryId">
-        <div class="form-group">
-          <label for="position" class="col-sm-2 control-label">Category Type : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" [(ngModel)]="model.categoryType" name="categoryType">
-          </div>
+        <input type="hidden" class="form-control"  [(ngModel)]="category.categoryId" name="categoryId">
+
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="position" class="control-label small"><b>Category Type</b></label>
+            <input type="text" class="form-control" [(ngModel)]="category.categoryType" name="categoryType">
         </div>
-        <div class="form-group">
-          <label for="department" class="col-sm-2 control-label">Category Name : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.categoryName" name="categoryName">
-          </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="department" class="control-label small"><b>Category Name</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="category.categoryName" name="categoryName">
         </div>
-        <div class="form-group">
-          <label for="salary" class="col-sm-2 control-label">Category Code : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.categoryCode" name="categoryCode">
-          </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Category Code</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="category.categoryCode" name="categoryCode">
         </div>
       
-        <div class="form-group">
-          <label for="salary" class="col-sm-2 control-label">Description : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.description" name="description">
-          </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Description</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="category.description" name="description">
         </div>
-        <div class="form-group">
-          <label for="salary" class="col-sm-2 control-label">Size : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.size" name="size">
-          </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Size</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="category.size" name="size">
         </div>
-        <div class="form-group">
-          <label for="salary" class="col-sm-2 control-label">Price : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.price" name="price">
-          </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Price</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="category.price" name="price">
         </div>
-        <div class="form-group">
-          <label for="salary" class="col-sm-2 control-label">Discount : </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.discount" name="discount">
-          </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>Discount</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="category.discount" name="discount">
         </div>
   
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-8">
+      <div class="text-center">
         <button type="submit" class="btn btn-success">Update</button>
         <!-- <a  class="btn btn-info" (click)="goBack()">Cancel</a> -->
       </div>

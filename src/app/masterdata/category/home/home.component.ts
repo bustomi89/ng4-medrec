@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild, Input } from '@angular
 import { CategoriService } from 'app/masterdata/category/category.service';
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { CategoryModel } from 'app/masterdata/category/category.model';
+import { EditComponent } from 'app/masterdata/category/edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,11 @@ import { CategoryModel } from 'app/masterdata/category/category.model';
 })
 export class HomeComponent implements OnInit {
 
-  // indexCategoryId : number;
+  indexCategoryId : number;
+
+  categoryEdit: CategoryModel;
+
+  @ViewChild(DatatableComponent) table: DatatableComponent;
   
     rows = [];
     temp = [];
@@ -22,7 +27,7 @@ export class HomeComponent implements OnInit {
 
     selected = [];
 
-    model = new CategoryModel();
+    statusFormEdit: boolean = false;
 
     pageSize: number = 10;
   
@@ -42,9 +47,6 @@ export class HomeComponent implements OnInit {
       { name: 'discount' },
     ];
   
-  
-    @ViewChild(DatatableComponent) table: DatatableComponent;
-    
    constructor(
       private _categoriService:CategoriService
     ) {
@@ -52,30 +54,51 @@ export class HomeComponent implements OnInit {
     }
   
     ngOnInit() {
-      this._categoriService.getAllCategorys().subscribe(data=> {
-        // console.log("data "+JSON.stringify(data));
-        // cache our list
-        this.temp = [...data];
-  
-        // push our inital complete list
-        this.rows = data;
-  
-        this.loadingIndicator = false;
-      })
+      this.getCategories();
     }
 
     getCategories(){
       this._categoriService.getAllCategorys()
           .subscribe(data=> {
-            // console.log("data "+JSON.stringify(data));
+
             // cache our list
             this.temp = [...data];
       
             // push our inital complete list
             this.rows = data;
-      
+            
             this.loadingIndicator = false;
           } )
+    }
+
+    getRefreshCategories($event){
+        // script untuk nambah json ke datatables
+        // this.rows.push($event);
+        // this.rows = [...this.rows]
+
+        for(let i=0; i < this.temp.length; i++){
+            if (this.temp[i].categoryId == $event.categoryId){
+                  this.temp[i].categoryType = $event.categoryType;
+                  this.temp[i].categoryName = $event.categoryName;
+                  this.temp[i].categoryCode = $event.categoryCode;
+                  this.temp[i].description = $event.description;
+                  this.temp[i].size = $event.size;
+                  this.temp[i].price = $event.price;
+                  this.temp[i].discount = $event.discount;
+            }
+        }
+
+        for(let i=0; i < this.rows.length; i++){
+            if (this.rows[i].categoryId == $event.categoryId){
+                  this.rows[i].categoryType = $event.categoryType;
+                  this.rows[i].categoryName = $event.categoryName;
+                  this.rows[i].categoryCode = $event.categoryCode;
+                  this.rows[i].description = $event.description;
+                  this.rows[i].size = $event.size;
+                  this.rows[i].price = $event.price;
+                  this.rows[i].discount = $event.discount;
+            }
+        }
     }
   
      updateFilter(event) {
@@ -125,8 +148,8 @@ export class HomeComponent implements OnInit {
       // console.log("onActivate "+event);
     }
     onSelect(event){
-      // console.log("onSelect "+JSON.stringify(event));
-      this.model =event;
+      this.statusFormEdit = true;
+      this.indexCategoryId = event.selected[0].categoryId;
     }
 
     onPage(event) {
