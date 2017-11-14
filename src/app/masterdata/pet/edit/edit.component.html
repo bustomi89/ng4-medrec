@@ -5,45 +5,45 @@
           Cancel</a> 
   </div>
   <div class="panel-body">
-    <form class="form-horizontal" (submit)="updateCustomer()">
+    <form class="form-horizontal" (submit)="updatePet()">
 
-        <input type="hidden" class="form-control"  [(ngModel)]="model.customer_id" name="customer_id">
-        <input type="hidden" class="form-control"  [(ngModel)]="model.pet_id" name="pet_id">
+        <input type="hidden" class="form-control"  [(ngModel)]="model.customerId" name="customerId">
+        <input type="hidden" class="form-control"  [(ngModel)]="model.petId" name="petId">
         <div class="form-group">
           <label for="position" class="col-sm-2 control-label">doctor id : </label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" [(ngModel)]="model.doctor_id" name="doctor_id">
+            <input type="number" class="form-control" [(ngModel)]="model.doctorId" name="doctorId">
           </div>
         </div>
         <div class="form-group">
           <label for="department" class="col-sm-2 control-label">species id : </label>
           <div class="col-sm-9">
-            <input type="date" class="form-control"  [(ngModel)]="model.species_id" name="species_id">
+            <input type="number" class="form-control"  [(ngModel)]="model.speciesId" name="speciesId">
           </div>
         </div>
         <div class="form-group">
           <label for="salary" class="col-sm-2 control-label">pet name : </label>
           <div class="col-sm-9">
-            <input type="number" class="form-control"  [(ngModel)]="model.pet_name" name="pet_name">
+            <input type="text" class="form-control"  [(ngModel)]="model.petName" name="petName">
           </div>
         </div>
     
         <div class="form-group">
           <label for="salary" class="col-sm-2 control-label">pet sex : </label>
           <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.pet_sex" name="pet_sex">
+            <input type="text" class="form-control"  [(ngModel)]="model.petSex" name="petSex">
           </div>
         </div>
         <div class="form-group">
           <label for="salary" class="col-sm-2 control-label">birthdate : </label>
           <div class="col-sm-9">
-            <input type="number" class="form-control"  [(ngModel)]="model.pet_birthdate" name="pet_birthdate">
+            <input type="date" class="form-control"  [(ngModel)]="model.petBirthdate" name="petBirthdate">
           </div>
         </div>
         <div class="form-group">
           <label for="salary" class="col-sm-2 control-label">pet age : </label>
           <div class="col-sm-9">
-            <input type="text" class="form-control"  [(ngModel)]="model.pet_age" name="pet_age">
+            <input type="number" class="form-control"  [(ngModel)]="model.petAge" name="petAge">
           </div>
         </div>
         <div class="form-group">

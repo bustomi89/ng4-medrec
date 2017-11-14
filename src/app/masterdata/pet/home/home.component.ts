@@ -29,14 +29,14 @@ export class HomeComponent implements OnInit {
   }
 
   columns = [
-    { prop: 'pet_id' },
-    { name: 'customer_id' },
-    { name: 'doctor_id' },
-    { name: 'species_id' },
-    { name: 'pet_name' },
-    { name: 'pet_sex' },
-    { name: 'pet_birthdate' },
-    { name: 'pet_age' },
+    { prop: 'petId' },
+    { name: 'customerId' },
+    { name: 'doctorId' },
+    { name: 'speciesId' },
+    { name: 'petName' },
+    { name: 'petSex' },
+    { name: 'petBirthdate' },
+    { name: 'petAge' },
     { name: 'breed' },
     { name: 'color' },
   ];
@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
     const temp = this.temp.filter(function(d) {
       console.log("d "+JSON.stringify(d));
 
-      return !val || ['pet_id', 'customer_id', 'doctor_id','species_id','pet_name','pet_sex','pet_birthdate','pet_age','breed','color'].some((field: any)=>{
+      return !val || ['petId', 'customerId', 'doctorId','speciesId','petName','petSex','petBirthdate','petAge','breed','color'].some((field: any)=>{
         
         return ((d[field] === null) ? '' : d[field]).toString().toLowerCase().indexOf(val) !== -1
       }) 
@@ -141,7 +141,7 @@ export class HomeComponent implements OnInit {
 
   toggleDelete(row) {
       this._petService
-        .deletePetById(row.pet_id)
+        .deletePetById(row.petId)
         .subscribe(() => {
           this.getPet();
         } )

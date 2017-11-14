@@ -9,7 +9,7 @@ import 'rxjs/Rx'; import { PetModel } from 'app/masterdata/pet/pet.model';
 export class PetService {
 
    //URLs for CRUD operations
-   allPetUrl = "http://localhost:8080/pet/all-pets";
+   allPetUrl = "http://localhost:8080/pet/all-pet";
    petUrl = "http://localhost:8080/pet/pet";
  
    constructor(private http:Http) { }
@@ -32,10 +32,10 @@ export class PetService {
    }
  
    //Fetch Pet by id
-   getPetById(pet_id: string): Observable<PetModel> {
+   getPetById(petId: string): Observable<PetModel> {
    let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
    let cpParams = new URLSearchParams();
-   cpParams.set('id', pet_id);			
+   cpParams.set('id', petId);			
    let options = new RequestOptions({ headers: cpHeaders, params: cpParams });
    return this.http.get(this.petUrl, options)
        .map(this.extractData)
@@ -52,10 +52,10 @@ export class PetService {
    }
    
    //Delete Pet	
-   deletePetById(pet_id: string): Observable<number> {
+   deletePetById(petId: string): Observable<number> {
    let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
    let cpParams = new URLSearchParams();
-   cpParams.set('id', pet_id);			
+   cpParams.set('id', petId);			
    let options = new RequestOptions({ headers: cpHeaders, params: cpParams });
    return this.http.delete(this.petUrl, options)
        .map(success => success.status)

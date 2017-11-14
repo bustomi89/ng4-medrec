@@ -8,7 +8,7 @@ import 'rxjs/Rx'; import { CustomerModel } from 'app/masterdata/customer/custome
 @Injectable()
 export class CustomerService {
   //URLs for CRUD operations
-  allCustomerUrl = "http://localhost:8080/customer/all-customers";
+  allCustomerUrl = "http://localhost:8080/customer/all-customer";
   customerUrl = "http://localhost:8080/customer/customer";
 
   constructor(private http:Http) { }
@@ -31,10 +31,10 @@ export class CustomerService {
   }
 
   //Fetch Customer by id
-  getCustomerById(customer_id: string): Observable<CustomerModel> {
+  getCustomerById(customerId: string): Observable<CustomerModel> {
   let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
   let cpParams = new URLSearchParams();
-  cpParams.set('id', customer_id);			
+  cpParams.set('id', customerId);			
   let options = new RequestOptions({ headers: cpHeaders, params: cpParams });
   return this.http.get(this.customerUrl, options)
       .map(this.extractData)
@@ -51,10 +51,10 @@ export class CustomerService {
   }
   
   //Delete Customer	
-  deleteCustomerById(customer_id: string): Observable<number> {
+  deleteCustomerById(customerId: string): Observable<number> {
   let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
   let cpParams = new URLSearchParams();
-  cpParams.set('id', customer_id);			
+  cpParams.set('id', customerId);			
   let options = new RequestOptions({ headers: cpHeaders, params: cpParams });
   return this.http.delete(this.customerUrl, options)
       .map(success => success.status)

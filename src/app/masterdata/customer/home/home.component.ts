@@ -29,12 +29,12 @@ export class HomeComponent implements OnInit {
   }
 
   columns = [
-    { prop: 'customer_id' },
-    { name: 'customer_name' },
-    { name: 'client_address' },
-    { name: 'postal_code' },
-    { name: 'phone_number' },
-    { name: 'identity_number' },
+    { prop: 'customerId' },
+    { name: 'customerName' },
+    { name: 'clientAddress' },
+    { name: 'postalCode' },
+    { name: 'phoneNumber' },
+    { name: 'identityNumber' },
     { name: 'reference' },
     { name: 'deposite' },
   ];
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
     const temp = this.temp.filter(function(d) {
       console.log("d "+JSON.stringify(d));
 
-      return !val || ['customer_id', 'customer_name', 'client_address','postal_code','phone_number','identity_number','reference','deposite'].some((field: any)=>{
+      return !val || ['customerId', 'customerName', 'clientAddress','postalCode','phoneNumber','identityNumber','reference','deposite'].some((field: any)=>{
         
         return ((d[field] === null) ? '' : d[field]).toString().toLowerCase().indexOf(val) !== -1
       }) 
@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
 
   toggleDelete(row) {
       this._customerService
-        .deleteCustomerById(row.customer_id)
+        .deleteCustomerById(row.customerId)
         .subscribe(() => {
           this.getCustomer();
         } )

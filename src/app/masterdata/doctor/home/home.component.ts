@@ -29,13 +29,13 @@ export class HomeComponent implements OnInit {
   }
 
   columns = [
-    { prop: 'doctor_id' },
-    { name: 'doctor_name' },
-    { name: 'doctor_address' },
-    { name: 'doctor_email' },
-    { name: 'doctor_handphone' },
-    { name: 'doctor_sip' },
-    { name: 'doctor_code' }
+    { prop: 'doctorId' },
+    { name: 'doctorName' },
+    { name: 'doctorAddress' },
+    { name: 'doctorEmail' },
+    { name: 'doctorHandphone' },
+    { name: 'doctorSip' },
+    { name: 'doctorCode' }
   ];
 
 
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
     const temp = this.temp.filter(function(d) {
       console.log("d "+JSON.stringify(d));
 
-      return !val || ['doctor_id', 'doctor_name', 'doctor_address','doctor_email','doctor_handphone','doctor_sip','doctor_code'].some((field: any)=>{
+      return !val || ['doctorId', 'doctorName', 'doctorAddress','doctorEmail','doctorHandphone','doctorSip','doctorCode'].some((field: any)=>{
         
         return ((d[field] === null) ? '' : d[field]).toString().toLowerCase().indexOf(val) !== -1
       }) 
@@ -138,7 +138,7 @@ export class HomeComponent implements OnInit {
 
   toggleDelete(row) {
       this._doctorService
-        .deleteDoctorById(row.doctor_id)
+        .deleteDoctorById(row.doctorId)
         .subscribe(() => {
           this.getDoctor();
         } )

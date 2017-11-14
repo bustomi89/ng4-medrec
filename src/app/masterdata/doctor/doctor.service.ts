@@ -31,10 +31,10 @@ export class DoctorService {
   }
 
   //Fetch Doctor by id
-  getDoctorById(doctor_id: string): Observable<DoctorModel> {
+  getDoctorById(doctorId: string): Observable<DoctorModel> {
   let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
   let cpParams = new URLSearchParams();
-  cpParams.set('id', doctor_id);			
+  cpParams.set('id', doctorId);			
   let options = new RequestOptions({ headers: cpHeaders, params: cpParams });
   return this.http.get(this.doctorUrl, options)
       .map(this.extractData)
@@ -51,10 +51,10 @@ export class DoctorService {
   }
 
   //Delete Doctor	
-  deleteDoctorById(doctor_id: string): Observable<number> {
+  deleteDoctorById(doctorId: string): Observable<number> {
   let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
   let cpParams = new URLSearchParams();
-  cpParams.set('id', doctor_id);			
+  cpParams.set('id', doctorId);			
   let options = new RequestOptions({ headers: cpHeaders, params: cpParams });
   return this.http.delete(this.doctorUrl, options)
       .map(success => success.status)

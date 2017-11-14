@@ -1,18 +1,18 @@
 export class CustomerModel {
-    modified_on: Date;
-    modified_by: string;
-    created_on: Date;
-    created_by: string;
-    customer_id:number;
-    customer_name: string;
+    modifiedOn: Date;
+    modifiedBy: string;
+    createdOn: Date;
+    createdBy: string;
+    customerId:number;
+    customerName: string;
     birthdate: Date;
-    customer_age:number;
-    client_address: string;
-    postal_code: string;
-    phone_number: string;
+    customerAge:number;
+    clientAddress: string;
+    postalCode: string;
+    phoneNumber: string;
     email: string;
-    identity_type: string;
-    identity_number: string;
+    identityType: string;
+    identityNumber: string;
     reference: string;
     deposite:number;
 }

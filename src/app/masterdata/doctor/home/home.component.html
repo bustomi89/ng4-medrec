@@ -66,23 +66,23 @@
                                                       <div>
                                                         <div>
                                                             <strong class="contro-label">Doctor Id</strong>
-                                                            {{row.doctor_id}}
+                                                            {{row.doctorId}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Doctor Name</strong>
-                                                            {{row.doctor_name}}
+                                                            {{row.doctorName}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Address</strong>
-                                                            {{row.doctor_address}}
+                                                            {{row.doctorAddress}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Email</strong>
-                                                            {{row.doctor_email}}
+                                                            {{row.doctorEmail}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Handphone</strong>
-                                                            {{row.doctor_handphone}}
+                                                            {{row.doctorHandphone}}
                                                         </div>
                                                       </div>
                                                     </ng-template>
@@ -104,7 +104,7 @@
                                                         <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
-                                                            routerLink="/masterdata/doctor/edit/{{row.doctor_id}}" routerLinkActive="active"
+                                                            routerLink="/masterdata/doctor/edit/{{row.doctorId}}" routerLinkActive="active"
                                                             >
                                                         </a>
                                                         <a class="btn btn-danger btn-xs btn-view fa"
@@ -114,19 +114,19 @@
                                                         </a>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="doctor_id" [width]="300">
+                                                  <ngx-datatable-column name="doctorId" [width]="300">
                                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                                       <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="doctor_name" [width]="300">
+                                                  <ngx-datatable-column name="doctorName" [width]="300">
                                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                                       <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="doctor_code" [width]="300">
+                                                  <ngx-datatable-column name="doctorCode" [width]="300">
                                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                                        <i [innerHTML]="row['doctor_code']"></i>
+                                                        <i [innerHTML]="row['doctorCode']"></i>
                                                     </ng-template>
                                                   </ngx-datatable-column>
                                                 </ngx-datatable>

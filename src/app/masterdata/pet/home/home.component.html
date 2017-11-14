@@ -66,31 +66,31 @@
                                                       <div>
                                                         <div>
                                                             <strong class="contro-label">Pet Id</strong>
-                                                            {{row.pet_id}}
+                                                            {{row.petId}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Doctor</strong>
-                                                            {{row.doctor_id}}
+                                                            {{row.doctorId}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Species</strong>
-                                                            {{row.species_id}}
+                                                            {{row.speciesId}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Pet Name</strong>
-                                                            {{row.pet_name}}
+                                                            {{row.petName}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Pet Sex</strong>
-                                                            {{row.pet_sex}}
+                                                            {{row.petSex}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Birthdate</strong>
-                                                            {{row.pet_birthdate}}
+                                                            {{row.petBirthdate}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Age</strong>
-                                                            {{row.pet_age}}
+                                                            {{row.petAge}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Breed</strong>
@@ -120,7 +120,7 @@
                                                         <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
-                                                            routerLink="/masterdata/pet/edit/{{row.pet_id}}" routerLinkActive="active"
+                                                            routerLink="/masterdata/pet/edit/{{row.petId}}" routerLinkActive="active"
                                                             >
                                                         </a>
                                                         <a class="btn btn-danger btn-xs btn-view fa"
@@ -130,19 +130,19 @@
                                                         </a>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="pet_id" [width]="300">
+                                                  <ngx-datatable-column name="petId" [width]="300">
                                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                                       <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="pet_name" [width]="300">
+                                                  <ngx-datatable-column name="petName" [width]="300">
                                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                                       <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="doctor_id" [width]="300">
+                                                  <ngx-datatable-column name="doctorId" [width]="300">
                                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                                        <i [innerHTML]="row['doctor_id']"></i>
+                                                        <i [innerHTML]="row['doctorId']"></i>
                                                     </ng-template>
                                                   </ngx-datatable-column>
                                                 </ngx-datatable>

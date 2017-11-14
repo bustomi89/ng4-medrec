@@ -18,13 +18,13 @@ export class AddComponent implements OnInit {
   }
 
   model = new PetModel();
-  addCustomer(){
+  addPet(){
       this._petService
         .createPet(this.model)
         .subscribe(()=> this.goBack());
   }
     goBack(){
-    this.router.navigate(['/masterdata/customer/home']);
+    this.router.navigate(['/masterdata/pet/home']);
   }
 
 }
