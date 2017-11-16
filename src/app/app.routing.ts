@@ -32,11 +32,11 @@ export const routes: Routes = [
         loadChildren: 'app/masterdata/masterdata.module#MasterdataModule',
         data: {pageTitle: 'Master Data'}
       },
-      // {
-      //   path: 'transaction',
-      //   loadChildren: 'app/transaction/transaction.module#TransactionModule',
-      //   data: {pageTitle: 'Transaction'}
-      // },
+      {
+        path: 'transaction',
+        loadChildren: 'app/transaction/transaction.module#TransactionModule',
+        data: {pageTitle: 'Transaction'}
+      },
       {
         path: 'smartadmin',
         loadChildren: 'app/+smartadmin-intel/smartadmin-intel.module#SmartadminIntelModule',

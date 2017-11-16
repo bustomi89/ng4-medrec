@@ -1,16 +1,14 @@
 <div id="content">
     <div class="row col-md-12">
         <div class="col-md-2">
-            <!-- <a class="btn btn-danger" routerLink="/masterdata/category/add"  routerLinkActive="active"> -->
-            <a class="btn btn-danger" (click)="tonggleAdd()"> 
+            <a class="btn btn-danger" routerLink="/transaction/registration/add"  routerLinkActive="active">
                 <i class="fa fa-plus"></i>
                 Add
             </a> 
         </div>
     </div>
     
-    <div id="table-grid" [class.col-md-6]="statusFormEdit" [class.col-md-12]="statusFormEdit">
-    <!-- <div id="table-grid" class="col-md-6"> -->
+    <div id="table-grid" class="col-md-12">
 
     <sa-widgets-grid>
             <div class="row">
@@ -18,7 +16,7 @@
                     <sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
                             <header>
                                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                                <h2>Category</h2>
+                                <h2>Registration</h2>
                             </header>
                             <div>
                                 <div class="widget-body no-padding">
@@ -74,32 +72,52 @@
                                                   <!-- (activate)="onActivate($event)" -->
 
                                                   <!-- Row Detail Template -->
-                                                  <ngx-datatable-row-detail [rowHeight]="120" #myDetailRow (toggle)="onDetailToggle($event)">
+                                                  <ngx-datatable-row-detail [rowHeight]="200" #myDetailRow (toggle)="onDetailToggle($event)">
                                                     <ng-template let-row="row" ngx-datatable-row-detail-template>
                                                       <div>
                                                         <div>
-                                                            <strong class="contro-label">Category Id</strong>
-                                                            {{row.categoryId}}
+                                                            <strong class="contro-label">Exam Id</strong>
+                                                            {{row.examId}}
                                                         </div>
                                                         <div>
-                                                            <strong class="contro-label">Category Code</strong>
-                                                            {{row.categoryCode}}
+                                                            <strong class="contro-label">Pet Name</strong>
+                                                            {{row.petId}}
                                                         </div>
                                                         <div>
-                                                            <strong class="contro-label">Size</strong>
-                                                            {{row.size}}
+                                                            <strong class="contro-label">History Note</strong>
+                                                            {{row.historyNote}}
                                                         </div>
                                                         <div>
-                                                            <strong class="contro-label">Price</strong>
-                                                            {{row.price}}
+                                                            <strong class="contro-label">temperature</strong>
+                                                            {{row.temperature}}
                                                         </div>
                                                         <div>
-                                                            <strong class="contro-label">Discount</strong>
-                                                            {{row.discount}}
+                                                            <strong class="contro-label">weight</strong>
+                                                            {{row.weight}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">pulseRate</strong>
+                                                            {{row.pulseRate}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">heartRate</strong>
+                                                            {{row.heartRate}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">respRate</strong>
+                                                            {{row.respRate}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">indexBody</strong>
+                                                            {{row.indexBody}}
                                                         </div>
                                                         <div>
                                                             <strong class="contro-label">Description</strong>
-                                                            {{row.description}}
+                                                            {{row.note}}
+                                                        </div>
+                                                        <div>
+                                                            <strong class="contro-label">customerType</strong>
+                                                            {{row.customerType}}
                                                         </div>
                                                       </div>
                                                     </ng-template>
@@ -124,25 +142,12 @@
                                                             title="Expand/Collapse Row"
                                                             (click)="toggleExpandRow(row)">
                                                         </a>
-                                                        <!-- <a class="btn btn-success btn-xs btn-view fa"
+                                                        <a class="btn btn-success btn-xs btn-view fa"
                                                             [class.fa-edit]="true"
                                                             title="edit"
-                                                            routerLink="/masterdata/category/edit/{{row.categoryId}}" routerLinkActive="active"
+                                                            routerLink="/transaction/registration/edit/{{row.examId}}" routerLinkActive="active"
                                                             >
-                                                        </a> -->
-                                                        <!-- <a class="btn btn-success btn-xs btn-view fa"
-                                                            [class.fa-edit]="true"
-                                                            title="edit"
-                                                            style="cursor: pointer;"
-                                                            [routerLink]="[indexCategoryId]" routerLinkActive="active"
-                                                            >
-                                                        </a> -->
-                                                        <!-- <a class="btn btn-success btn-xs btn-view fa"
-                                                            [class.fa-edit]="true"
-                                                            title="edit"
-                                                            (click)="toggleEdit(row)" 
-                                                            >
-                                                        </a> -->
+                                                        </a>
                                                         <a class="btn btn-danger btn-xs btn-view fa"
                                                             [class.fa-remove]="true"
                                                             title="delete"
@@ -150,29 +155,19 @@
                                                         </a>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <!-- <ngx-datatable-column name="id" [width]="60">
-                                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                                      <strong>{{row.$$index}}</strong>
-                                                    </ng-template>
-                                                  </ngx-datatable-column> -->
-                                                  <!-- <ngx-datatable-column name="Expanded">
-                                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                                      <strong>{{row.$$expanded === 1}}</strong>
-                                                    </ng-template>
-                                                  </ngx-datatable-column> -->
-                                                  <!-- <ngx-datatable-column name="categoryId" [width]="300">
-                                                    <ng-template let-value="value" ngx-datatable-cell-template>
-                                                      <strong>{{value}}</strong>
-                                                    </ng-template>
-                                                  </ngx-datatable-column> -->
-                                                  <ngx-datatable-column name="categoryType" [width]="300">
+                                                  <ngx-datatable-column name="customerType" [width]="300">
                                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                                       <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column>
-                                                  <ngx-datatable-column name="categoryName" [width]="300">
+                                                  <ngx-datatable-column name="examId" [width]="300">
+                                                    <ng-template let-value="value" ngx-datatable-cell-template>
+                                                      <strong>{{value}}</strong>
+                                                    </ng-template>
+                                                  </ngx-datatable-column>
+                                                  <ngx-datatable-column name="petId" [width]="300">
                                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                                        <i [innerHTML]="row['categoryName']"></i>
+                                                        <i [innerHTML]="row['petId']"></i>
                                                     </ng-template>
                                                   </ngx-datatable-column>
                                                 </ngx-datatable>
@@ -185,81 +180,4 @@
     </sa-widgets-grid>
     
     </div>
-    <!-- <div id="form-input" class="col-md-6"> -->
-    <div id="form-input" [class.col-md-6]="statusFormEdit">
-        <!-- <div *ngIf='indexCategoryId' > -->
-        <div *ngIf='statusFormEdit' >
-        <!-- <div > -->
-            <app-edit 
-                [indexCategoryId]="indexCategoryId"
-                (eventCategories)="getRefreshCategories($event)"
-            ></app-edit>
-        </div>
-    </div>
 </div>
-
-<!-- <sa-widgets-grid>
-        <div class="row">
-            <article class="col-sm-12 col-md-12 col-lg-12">
-                <sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
-                        <header>
-                            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                            <h2>Category</h2>
-                        </header>
-                        <div>
-                            <div class="widget-body no-padding">
-                                <div class="lightest-gray-bg">
-                                            
-                                    <div class="row" style="padding: 8px 12px">
-                                                                                    
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <div class="icon-addon">
-                                                    <input type="text" id="search" class="form-control"  [(ngModel)]="controls.filter"
-                                                        placeholder='Type to filter the table...'
-                                                        (keyup)='updateFilter($event)'> 
-                                                    <label style="z-index: 22" for="search" class="fa fa-search" rel="tooltip" title="search"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="pull-right form-control " style="width: 70px;"
-                                                (ngModelChange)="updatePageSize($event)" [(ngModel)]="controls.pageSize">
-                                                    <option>10</option>
-                                                    <option>20</option>
-                                                    <option>30</option>
-                                                    <option>50</option>
-                                            </select>
-                                        </div>                            
-                                    </div>
-                                            
-                                    <ngx-datatable
-                                        #table
-                                        class="table-striped"
-                                        [rows]="rows"
-                                        [loadingIndicator]="loadingIndicator"
-                                        [columns]="columns"
-                                        [columnMode]="'force'"
-                                        [headerHeight]="40"
-                                        [footerHeight]="45"
-                                        [rowHeight]="'auto'"
-                                        [limit]="controls.pageSize"
-                                    
-                                        [cssClasses]= "{
-                                            sortAscending: 'fa fa-caret-up',
-                                            sortDescending: 'fa fa-caret-down',
-                                            pagerLeftArrow: 'fa  fa-angle-left',
-                                            pagerRightArrow: 'fa fa-angle-right',
-                                            pagerPrevious: 'fa fa-angle-double-left',
-                                            pagerNext: 'fa fa-angle-double-right'
-                                        }"
-                                        [reorderable]="reorderable">
-                                        
-                                    </ngx-datatable>
-                                </div>
-                            </div>
-                        </div>
-                </sa-widget>
-            </article>
-        </div>
-    </sa-widgets-grid> -->

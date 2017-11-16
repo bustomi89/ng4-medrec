@@ -1,0 +1,61 @@
+<div class="panel panel-default" *ngIf=registration>
+    <div class="panel-heading">
+            <a class="btn btn-info" (click)="goBack()">
+              <i class="fa fa-plus-square-o"></i>
+              Back</a> 
+              <!-- <b>View registration</b> -->
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" >
+        <div class="form-group">
+          <label for="emp_name" class="col-sm-2 control-label">registration ID : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.categoryId}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="position" class="col-sm-2 control-label">registration Type : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.categoryType}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="department" class="col-sm-2 control-label">registration Name : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.categoryName}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">registration Code : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.categoryCode}}</p>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Description : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.description}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Size : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.size}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Price : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.price}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary" class="col-sm-2 control-label">Discount : </label>
+          <div class="col-sm-9">
+            <p class="form-control">{{registration.discount}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 import {SmartadminModule} from '../shared/smartadmin.module';
 import { NgModule } from '@angular/core';
-import {routing} from './masterdata.routing';
+import { routing } from './transaction.routing';
 
 @NgModule({
   imports: [
@@ -8,4 +8,4 @@ import {routing} from './masterdata.routing';
     routing,
   ]
 })
-export class MasterdataModule { }
+export class TransactionModule { }

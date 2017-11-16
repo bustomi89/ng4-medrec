@@ -1,0 +1,119 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <a class="btn btn-info" (click)="goBack()">
+        <i class="fa fa-plus-square-o"></i>
+        Back
+      </a> 
+            <!-- Form Input Category -->
+            <b>{{statusProcess}}</b>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" (submit)="updateRegistration()">
+        <!-- <div class="form-group">
+          <label for="emp_name" class="col-sm-2 control-label">Category ID : </label>
+          <div class="col-sm-9">
+
+          </div>
+        </div> -->
+        <input type="hidden" class="form-control"  [(ngModel)]="registration.examId" name="examId">
+
+        <!-- <div class="form-group col-xs-12 col-md-12">
+            <label for="position" class="control-label small"><b>petId</b></label>
+            <input type="text" class="form-control" [(ngModel)]="registration.petId" name="petId">
+        </div> -->
+        <input type="hidden" class="form-control" [(ngModel)]="registration.petId" name="petId">
+        
+        <!-- <div class="form-group col-xs-12 col-md-12">
+          <label for="department" class="control-label small"><b>historyNote</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.historyNote" name="historyNote">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>temperature</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.temperature" name="temperature">
+        </div>
+      
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>weight</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.weight" name="weight">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>pulseRate</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.pulseRate" name="pulseRate">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>heartRate</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.heartRate" name="heartRate">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>respRate</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.respRate" name="respRate">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>indexBody</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.indexBody" name="indexBody">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+          <label for="salary" class="control-label small"><b>note</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.note" name="note">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Customer Type</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="registration.customerType" name="customerType">
+        </div>
+         -->
+
+        <!--  PET -->
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Pet Id</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.petId" name="petId">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Client Name</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.customerId" name="customerId">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Colega Name</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.doctorId" name="doctorId">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Species</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.speciesId" name="speciesId">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Pet Name</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.petName" name="petName">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Sex</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.petSex" name="petSex">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Birth of Date</b></label>
+            <!-- <input type="date" class="form-control"  [(ngModel)]="pet.petBirthdate" name="petBirthdate"> -->
+            <input type="date" name="petBirthdate" class="form-control col-xs-12 col-md-4" [ngModel]="pet.petBirthdate | date: 'y-MM-dd'" required />
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Age</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.petAge" name="petAge">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Breed</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.breed" name="breed">
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="salary" class="control-label small"><b>Color</b></label>
+            <input type="text" class="form-control"  [(ngModel)]="pet.color" name="color">
+        </div> 
+      <!-- PET -->
+      
+    <div class="form-group">
+      <div class="text-center">
+        <button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Save</button>
+        <!-- <button class="btn btn-info" (click)="tonggleAddReset()"><i class="fa fa-plus-square-o"></i> Reset</button>  -->
+      </div>
+    </div>
+  </form>
+  
+    </div>
+  </div>
+  
