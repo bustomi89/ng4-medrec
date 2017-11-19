@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit {
 
     statusFormEdit: boolean = false;
 
+    flag_delete: boolean = false;
+
     pageSize: number = 10;
   
     controls: any = {
@@ -156,9 +158,18 @@ export class HomeComponent implements OnInit {
     onActivate(event){
       // console.log("onActivate "+event);
     }
+    
     onSelect(event){
-      this.statusFormEdit = true;
+      if (this.flag_delete == true){
+        this.statusFormEdit = false;
+        this.flag_delete = false;
+      } else {
+        this.statusFormEdit = true;
+      }
+
       this.indexCategoryId = event.selected[0].categoryId;
+      console.log("this.statusFormEdit onSelect "+this.statusFormEdit);
+      console.log("this.flag_delete onSelect "+this.flag_delete);
     }
 
     onPage(event) {
@@ -173,11 +184,21 @@ export class HomeComponent implements OnInit {
     }
 
     toggleDelete(row) {
-        this._categoriService
-          .deleteCategoryById(row.categoryId)
-          .subscribe(() => {
-            this.getCategories();
-          } )
+        // this._categoriService
+        //   .deleteCategoryById(row.categoryId)
+        //   .subscribe(() => {
+        //     this.getCategories();
+        //   } )
+      console.log("this.statusFormEdit "+this.statusFormEdit);
+      
+      this.flag_delete= true;
+
+          if (this.statusFormEdit == true){
+            this.statusFormEdit = false;
+          } else {
+            this.statusFormEdit = false;
+            this.editCategory.tonggleAddReset();
+          }
     }
 
     tonggleAdd(){

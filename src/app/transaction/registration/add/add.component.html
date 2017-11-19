@@ -20,8 +20,17 @@
                     <input type="text" class="form-control" [(ngModel)]="registration.petId" name="petId">
                 </div> -->
                 <input type="hidden" class="form-control" [(ngModel)]="registration.petId" name="petId">
+                <div class="form-group col-xs-12 col-md-12">
+                    <label for="petId" class="control-label small"><b>Pet</b></label>
+                    <input [(ngModel)]="customSelected"
+                    [typeahead]="pets"
+                    typeaheadOptionField="pets.petName"
+                    (typeaheadOnSelect)="typeaheadOnSelect($event)"
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-control">
+                </div>
                 
-                <!-- <div class="form-group col-xs-12 col-md-12">
+                <div class="form-group col-xs-12 col-md-12">
                   <label for="department" class="control-label small"><b>historyNote</b></label>
                     <input type="text" class="form-control"  [(ngModel)]="registration.historyNote" name="historyNote">
                 </div>
@@ -58,7 +67,7 @@
                     <label for="salary" class="control-label small"><b>Customer Type</b></label>
                     <input type="text" class="form-control"  [(ngModel)]="registration.customerType" name="customerType">
                 </div>
-                 -->
+                
         
                 <!--  PET -->
                 <div class="form-group col-xs-12 col-md-12">

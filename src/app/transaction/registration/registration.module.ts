@@ -12,6 +12,7 @@ import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationService } from './registration.service';
 import { PetService } from 'app/transaction/registration/pet.service';
+import { TypeaheadModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { PetService } from 'app/transaction/registration/pet.service';
     RegistrationRoutingModule,
     NgxDatatableModule,
     SmartadminModule,
+    TypeaheadModule.forRoot()
   ],
   declarations: [RegistrationComponent, AddComponent, EditComponent, HomeComponent, ShowComponent],
   providers: [RegistrationService,PetService],
