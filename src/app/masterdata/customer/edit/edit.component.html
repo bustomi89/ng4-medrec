@@ -5,9 +5,10 @@
           Back</a> 
   </div> -->
   <div class="panel-heading">
-      <a class="btn btn-info" (click)="goBack()">
+      <!-- <a class="btn btn-info" (click)="goBack()">
           <i class="fa fa-plus-square-o"></i>
-          Cancel</a> 
+          Cancel</a>  -->
+      <b>{{statusProcess}}</b>
   </div>
   <div class="panel-body">
     <form class="form-horizontal" (submit)="updateCustomer()">
@@ -81,9 +82,16 @@
         </div>
       </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
       <button type="submit" class="btn btn-success">Update</button>
+    </div>
+   
+  </div> -->
+  <div class="form-group">
+    <div class="text-center">
+      <button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Save</button>
+      <button class="btn btn-info" (click)="tonggleAddReset()"><i class="fa fa-plus-square-o"></i> Reset</button> 
     </div>
    
   </div>

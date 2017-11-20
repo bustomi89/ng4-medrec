@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild, Input } from '@angular
 import { CustomerService } from 'app/masterdata/customer/customer.service';
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { CustomerModel } from 'app/masterdata/customer/customer.model';
+import { EditComponent } from 'app/masterdata/customer/edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,12 @@ import { CustomerModel } from 'app/masterdata/customer/customer.model';
 })
 export class HomeComponent implements OnInit {
 
+  indexCustomerId : number;
+  showForm : boolean;
+
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild(EditComponent) editCustomer : EditComponent;
+
   rows = [];
   temp = [];
   loadingIndicator: boolean = true;
@@ -18,6 +25,10 @@ export class HomeComponent implements OnInit {
   reorderable: boolean = true;
 
   selected = [];
+
+  statusFormEdit: boolean = false;
+
+  flag_delete: boolean = false;
 
   model = new CustomerModel();
 
@@ -38,9 +49,6 @@ export class HomeComponent implements OnInit {
     { name: 'reference' },
     { name: 'deposite' },
   ];
-
-
-  @ViewChild(DatatableComponent) table: DatatableComponent;
   
  constructor(
     private _customerService:CustomerService
@@ -74,6 +82,38 @@ export class HomeComponent implements OnInit {
           this.loadingIndicator = false;
         } )
   }
+  getRefreshCustomer($event){
+    // script untuk nambah json ke datatables
+  if($event.customerId == null || $event.customerId == 0 ){
+      
+      this.rows.push($event);
+
+  }else{
+        for(let i=0; i < this.temp.length; i++){
+            if (this.temp[i].customerId == $event.customerId){
+                  this.temp[i].customerName = $event.customerName;
+                  this.temp[i].clientAddress = $event.clientAddress;
+                  this.temp[i].postalCode = $event.postalCode;
+                  this.temp[i].identityNumber = $event.identityNumber;
+                  this.temp[i].reference = $event.reference;
+                  this.temp[i].deposite = $event.deposite;
+            }
+        }
+
+        for(let i=0; i < this.rows.length; i++){
+            if (this.rows[i].customerId == $event.customerId){
+                  this.rows[i].customerType = $event.customerType;
+                  this.rows[i].customerName = $event.customerName;
+                  this.rows[i].clientAddress = $event.clientAddress;
+                  this.rows[i].postalCode = $event.postalCode;
+                  this.rows[i].identityNumber = $event.identityNumber;
+                  this.rows[i].reference = $event.reference;
+                  this.rows[i].deposite = $event.deposite;
+            }
+        }
+  }
+    
+}
 
    updateFilter(event) {
 
@@ -123,7 +163,14 @@ export class HomeComponent implements OnInit {
   }
   onSelect(event){
     // console.log("onSelect "+JSON.stringify(event));
-    this.model =event;
+    if (this.flag_delete == true){
+      this.statusFormEdit = false;
+      this.flag_delete = false;
+    } else {
+      this.statusFormEdit = true;
+    }
+
+    this.indexCustomerId = event.selected[0].customerId;
   }
 
   onPage(event) {
@@ -138,11 +185,24 @@ export class HomeComponent implements OnInit {
   }
 
   toggleDelete(row) {
-      this._customerService
-        .deleteCustomerById(row.customerId)
-        .subscribe(() => {
-          this.getCustomer();
-        } )
+    this.flag_delete= true;
+    
+    if (this.statusFormEdit == true){
+      this.statusFormEdit = false;
+    } else {
+      this.statusFormEdit = false;
+      this.editCustomer.tonggleAddReset();
+    }
+  }
+
+  tonggleAdd(){
+    if (this.statusFormEdit == false){
+      this.statusFormEdit = true;
+    } else {
+      this.statusFormEdit = true;
+      this.editCustomer.tonggleAddReset();
+    }
+    
   }
 
 }
