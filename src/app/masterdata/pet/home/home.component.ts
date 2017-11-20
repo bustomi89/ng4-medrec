@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild, Input } from '@angular
 import { PetService } from 'app/masterdata/pet/pet.service';
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { PetModel } from 'app/masterdata/pet/pet.model';
+import { EditComponent } from 'app/masterdata/pet/edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,12 @@ import { PetModel } from 'app/masterdata/pet/pet.model';
 })
 export class HomeComponent implements OnInit {
 
+  indexPetId : number;
+  showForm : boolean;
+
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild(EditComponent) editPet : EditComponent;
+
   rows = [];
   temp = [];
   loadingIndicator: boolean = true;
@@ -18,6 +25,10 @@ export class HomeComponent implements OnInit {
   reorderable: boolean = true;
 
   selected = [];
+
+  statusFormEdit: boolean = false;
+  
+  flag_delete: boolean = false;
 
   model = new PetModel();
 
@@ -40,9 +51,6 @@ export class HomeComponent implements OnInit {
     { name: 'breed' },
     { name: 'color' },
   ];
-
-
-  @ViewChild(DatatableComponent) table: DatatableComponent;
   
  constructor(
     private _petService:PetService
@@ -75,6 +83,44 @@ export class HomeComponent implements OnInit {
     
           this.loadingIndicator = false;
         } )
+  }
+
+  getRefreshPet($event){
+    // script untuk nambah json ke datatables
+    if($event.petId == null || $event.petId == 0 ){
+        
+        this.rows.push($event);
+
+    }else{
+          for(let i=0; i < this.temp.length; i++){
+              if (this.temp[i].petId == $event.petId){
+                    this.temp[i].customerId = $event.customerId;
+                    this.temp[i].doctorId = $event.doctorId;
+                    this.temp[i].speciesId = $event.speciesId;
+                    this.temp[i].petName = $event.petName;
+                    this.temp[i].petSex = $event.petSex;
+                    this.temp[i].petBirthdate = $event.petBirthdate;
+                    this.temp[i].petAge = $event.petAge;
+                    this.temp[i].breed = $event.breed;
+                    this.temp[i].color = $event.color;
+              }
+          }
+
+          for(let i=0; i < this.rows.length; i++){
+              if (this.rows[i].petId == $event.petId){
+                    this.rows[i].customerId = $event.customerId;
+                    this.rows[i].doctorId = $event.doctorId;
+                    this.rows[i].speciesId = $event.speciesId;
+                    this.rows[i].petName = $event.petName;
+                    this.rows[i].petSex = $event.petSex;
+                    this.rows[i].petBirthdate = $event.petBirthdate;
+                    this.rows[i].petAge = $event.petAge;
+                    this.rows[i].breed = $event.breed;
+                    this.rows[i].color = $event.color;
+              }
+          }
+    }
+      
   }
 
    updateFilter(event) {
@@ -125,7 +171,14 @@ export class HomeComponent implements OnInit {
   }
   onSelect(event){
     // console.log("onSelect "+JSON.stringify(event));
-    this.model =event;
+    if (this.flag_delete == true){
+      this.statusFormEdit = false;
+      this.flag_delete = false;
+    } else {
+      this.statusFormEdit = true;
+    }
+
+    this.indexPetId = event.selected[0].petId;
   }
 
   onPage(event) {
@@ -140,11 +193,24 @@ export class HomeComponent implements OnInit {
   }
 
   toggleDelete(row) {
-      this._petService
-        .deletePetById(row.petId)
-        .subscribe(() => {
-          this.getPet();
-        } )
+    this.flag_delete= true;
+    
+    if (this.statusFormEdit == true){
+      this.statusFormEdit = false;
+    } else {
+      this.statusFormEdit = false;
+      this.editPet.tonggleAddReset();
+    }
+  }
+
+  tonggleAdd(){
+    if (this.statusFormEdit == false){
+      this.statusFormEdit = true;
+    } else {
+      this.statusFormEdit = true;
+      this.editPet.tonggleAddReset();
+    }
+    
   }
 
 }

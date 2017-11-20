@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PetService } from 'app/masterdata/pet/pet.service';
 import { PetModel } from 'app/masterdata/pet/pet.model';
@@ -11,6 +11,10 @@ import { PetModel } from 'app/masterdata/pet/pet.model';
 export class EditComponent implements OnInit {
 
   @Input() indexPetId: number;
+
+  @Output() eventPet = new EventEmitter<PetModel>();
+  
+  statusProcess : string;
   
   constructor(
     private router: Router,
@@ -22,10 +26,18 @@ export class EditComponent implements OnInit {
     this.route.params
     .subscribe(
       (params: Params) => {
-        this.indexPetId = +params['id']; // casting dari string ke number
-        this.getSinglePet(this.indexPetId);
+        if (this.indexPetId != undefined || this.indexPetId != null){
+          this.getSinglePet(this.indexPetId);
+        }
       }
     )
+  }
+
+  ngOnChanges(change: SimpleChanges): void { 
+    if (this.indexPetId != undefined || this.indexPetId != null){
+    this.getSinglePet(change.indexPetId.currentValue);
+      this.statusProcess = '';
+    }
   }
 
   //model:any={};
@@ -42,15 +54,34 @@ export class EditComponent implements OnInit {
   };
   
   updatePet(){
-      this._petService
-        .updatePet(this.model)
+    if(this.model.petId == null || this.model.petId== 0 ){
+      if (Object.keys(this.model).length != 0){
+        this._petService
+        .createPet(this.model)
         .subscribe(()=> this.goBack());
-        this._petService.getAllPet();
+
+        this.eventPet.emit(this.model);
+        this.statusProcess = "Add Data is Success!";
+      }
+
+    } else{
+      this._petService
+      .updatePet(this.model)
+      .subscribe(()=> this.goBack());
+
+      this.eventPet.emit(this.model);
+      this.statusProcess = "Save Data is Success!";
+    }
   }
   
-    goBack(){
+  goBack(){
     this._petService.getAllPet();
     this.router.navigate(['/masterdata/pet/home']);
+  }
+
+  tonggleAddReset(){
+    this.model = new PetModel();
+    this.statusProcess = '';
   }
 
 }

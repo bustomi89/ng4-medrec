@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
 
   getRefreshDoctor($event){
     // script untuk nambah json ke datatables
-    if($event.customerId == null || $event.customerId == 0 ){
+    if($event.doctorId == null || $event.doctorId == 0 ){
         
         this.rows.push($event);
 
