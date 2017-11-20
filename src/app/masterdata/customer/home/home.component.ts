@@ -84,36 +84,36 @@ export class HomeComponent implements OnInit {
   }
   getRefreshCustomer($event){
     // script untuk nambah json ke datatables
-  if($event.customerId == null || $event.customerId == 0 ){
+    if($event.customerId == null || $event.customerId == 0 ){
+        
+        this.rows.push($event);
+
+    }else{
+          for(let i=0; i < this.temp.length; i++){
+              if (this.temp[i].customerId == $event.customerId){
+                    this.temp[i].customerName = $event.customerName;
+                    this.temp[i].clientAddress = $event.clientAddress;
+                    this.temp[i].postalCode = $event.postalCode;
+                    this.temp[i].identityNumber = $event.identityNumber;
+                    this.temp[i].reference = $event.reference;
+                    this.temp[i].deposite = $event.deposite;
+              }
+          }
+
+          for(let i=0; i < this.rows.length; i++){
+              if (this.rows[i].customerId == $event.customerId){
+                    this.rows[i].customerType = $event.customerType;
+                    this.rows[i].customerName = $event.customerName;
+                    this.rows[i].clientAddress = $event.clientAddress;
+                    this.rows[i].postalCode = $event.postalCode;
+                    this.rows[i].identityNumber = $event.identityNumber;
+                    this.rows[i].reference = $event.reference;
+                    this.rows[i].deposite = $event.deposite;
+              }
+          }
+    }
       
-      this.rows.push($event);
-
-  }else{
-        for(let i=0; i < this.temp.length; i++){
-            if (this.temp[i].customerId == $event.customerId){
-                  this.temp[i].customerName = $event.customerName;
-                  this.temp[i].clientAddress = $event.clientAddress;
-                  this.temp[i].postalCode = $event.postalCode;
-                  this.temp[i].identityNumber = $event.identityNumber;
-                  this.temp[i].reference = $event.reference;
-                  this.temp[i].deposite = $event.deposite;
-            }
-        }
-
-        for(let i=0; i < this.rows.length; i++){
-            if (this.rows[i].customerId == $event.customerId){
-                  this.rows[i].customerType = $event.customerType;
-                  this.rows[i].customerName = $event.customerName;
-                  this.rows[i].clientAddress = $event.clientAddress;
-                  this.rows[i].postalCode = $event.postalCode;
-                  this.rows[i].identityNumber = $event.identityNumber;
-                  this.rows[i].reference = $event.reference;
-                  this.rows[i].deposite = $event.deposite;
-            }
-        }
   }
-    
-}
 
    updateFilter(event) {
 

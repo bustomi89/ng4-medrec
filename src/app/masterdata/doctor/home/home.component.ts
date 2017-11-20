@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild, Input } from '@angular
 import { DoctorService } from 'app/masterdata/doctor/doctor.service';
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { DoctorModel } from 'app/masterdata/doctor/doctor.model';
+import { EditComponent } from 'app/masterdata/doctor/edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,12 @@ import { DoctorModel } from 'app/masterdata/doctor/doctor.model';
 })
 export class HomeComponent implements OnInit {
 
+  indexDoctorId : number;
+  showForm : boolean;
+
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild(EditComponent) editDoctor : EditComponent;
+
   rows = [];
   temp = [];
   loadingIndicator: boolean = true;
@@ -18,6 +25,10 @@ export class HomeComponent implements OnInit {
   reorderable: boolean = true;
 
   selected = [];
+
+  statusFormEdit: boolean = false;
+  
+  flag_delete: boolean = false;
 
   model = new DoctorModel();
 
@@ -37,9 +48,6 @@ export class HomeComponent implements OnInit {
     { name: 'doctorSip' },
     { name: 'doctorCode' }
   ];
-
-
-  @ViewChild(DatatableComponent) table: DatatableComponent;
   
  constructor(
     private _doctorService:DoctorService
@@ -72,6 +80,38 @@ export class HomeComponent implements OnInit {
     
           this.loadingIndicator = false;
         } )
+  }
+
+  getRefreshDoctor($event){
+    // script untuk nambah json ke datatables
+    if($event.customerId == null || $event.customerId == 0 ){
+        
+        this.rows.push($event);
+
+    }else{
+          for(let i=0; i < this.temp.length; i++){
+              if (this.temp[i].doctorId == $event.doctorId){
+                    this.temp[i].doctorName = $event.doctorName;
+                    this.temp[i].doctorAddress = $event.doctorAddress;
+                    this.temp[i].doctorEmail = $event.doctorEmail;
+                    this.temp[i].doctorHandphone = $event.doctorHandphone;
+                    this.temp[i].doctorSip = $event.doctorSip;
+                    this.temp[i].doctorCode = $event.doctorCode;
+              }
+          }
+
+          for(let i=0; i < this.rows.length; i++){
+              if (this.rows[i].doctorId == $event.doctorId){
+                    this.rows[i].doctorName = $event.doctorName;
+                    this.rows[i].doctorAddress = $event.doctorAddress;
+                    this.rows[i].doctorEmail = $event.doctorEmail;
+                    this.rows[i].doctorHandphone = $event.doctorHandphone;
+                    this.rows[i].doctorSip = $event.doctorSip;
+                    this.rows[i].doctorCode = $event.doctorCode;
+              }
+          }
+    }
+      
   }
 
    updateFilter(event) {
@@ -121,8 +161,14 @@ export class HomeComponent implements OnInit {
     // console.log("onActivate "+event);
   }
   onSelect(event){
-    // console.log("onSelect "+JSON.stringify(event));
-    this.model =event;
+    if (this.flag_delete == true){
+      this.statusFormEdit = false;
+      this.flag_delete = false;
+    } else {
+      this.statusFormEdit = true;
+    }
+
+    this.indexDoctorId = event.selected[0].doctorId;
   }
 
   onPage(event) {
@@ -137,11 +183,24 @@ export class HomeComponent implements OnInit {
   }
 
   toggleDelete(row) {
-      this._doctorService
-        .deleteDoctorById(row.doctorId)
-        .subscribe(() => {
-          this.getDoctor();
-        } )
+    this.flag_delete= true;
+    
+    if (this.statusFormEdit == true){
+      this.statusFormEdit = false;
+    } else {
+      this.statusFormEdit = false;
+      this.editDoctor.tonggleAddReset();
+    }
+  }
+
+  tonggleAdd(){
+    if (this.statusFormEdit == false){
+      this.statusFormEdit = true;
+    } else {
+      this.statusFormEdit = true;
+      this.editDoctor.tonggleAddReset();
+    }
+    
   }
 
 }

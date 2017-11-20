@@ -1,13 +1,13 @@
 <div id="content">
     <div class="row col-md-12">
         <div class="col-md-2">
-            <a class="btn btn-danger" routerLink="/masterdata/doctor/add"  routerLinkActive="active">
-            <i class="fa fa-plus"></i>
-            Add</a> 
+          <a class="btn btn-info" (click)="tonggleAdd()">
+            <i class="fa fa-plus"></i> Add
+          </a> 
         </div>
     </div>
     
-    <div id="table-grid" class="col-md-12">
+    <div id="table-grid" [class.col-md-6]="statusFormEdit" [class.col-md-12]="statusFormEdit">
   
     <sa-widgets-grid>
             <div class="row">
@@ -101,22 +101,11 @@
                                                             title="Expand/Collapse Row"
                                                             (click)="toggleExpandRow(row)">
                                                         </a>
-                                                        <a class="btn btn-success btn-xs btn-view fa"
-                                                            [class.fa-edit]="true"
-                                                            title="edit"
-                                                            routerLink="/masterdata/doctor/edit/{{row.doctorId}}" routerLinkActive="active"
-                                                            >
-                                                        </a>
                                                         <a class="btn btn-danger btn-xs btn-view fa"
                                                             [class.fa-remove]="true"
                                                             title="delete"
                                                             (click)="toggleDelete(row)">
                                                         </a>
-                                                    </ng-template>
-                                                  </ngx-datatable-column>
-                                                  <ngx-datatable-column name="doctorId" [width]="300">
-                                                    <ng-template let-value="value" ngx-datatable-cell-template>
-                                                      <strong>{{value}}</strong>
                                                     </ng-template>
                                                   </ngx-datatable-column>
                                                   <ngx-datatable-column name="doctorName" [width]="300">
@@ -138,5 +127,11 @@
             </div>
     </sa-widgets-grid>
     
+    </div>
+
+    <div id="form-input" [class.col-md-6]="statusFormEdit">
+      <div *ngIf='statusFormEdit'>
+          <app-edit [indexDoctorId]="indexDoctorId" (eventDoctor)="getRefreshDoctor($event)"></app-edit>
+      </div>
     </div>
   </div>

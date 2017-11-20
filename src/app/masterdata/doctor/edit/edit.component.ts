@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DoctorService } from 'app/masterdata/doctor/doctor.service';
 import { DoctorModel } from 'app/masterdata/doctor/doctor.model';
@@ -11,6 +11,10 @@ import { DoctorModel } from 'app/masterdata/doctor/doctor.model';
 export class EditComponent implements OnInit {
 
   @Input() indexDoctorId: number;
+
+  @Output() eventDoctor = new EventEmitter<DoctorModel>();
+  
+  statusProcess : string;
   
   constructor(
     private router: Router,
@@ -22,10 +26,18 @@ export class EditComponent implements OnInit {
     this.route.params
     .subscribe(
       (params: Params) => {
-        this.indexDoctorId = +params['id']; // casting dari string ke number
-        this.getSingleDoctor(this.indexDoctorId);
+        if (this.indexDoctorId != undefined || this.indexDoctorId != null){
+          this.getSingleDoctor(this.indexDoctorId);
+        }
       }
     )
+  }
+
+  ngOnChanges(change: SimpleChanges): void { 
+    if (this.indexDoctorId != undefined || this.indexDoctorId != null){
+    this.getSingleDoctor(change.indexDoctorId.currentValue);
+      this.statusProcess = '';
+    }
   }
 
   //model:any={};
@@ -42,15 +54,34 @@ export class EditComponent implements OnInit {
   };
   
   updateDoctor(){
-      this._doctorService
-        .updateDoctor(this.model)
+    if(this.model.doctorId == null || this.model.doctorId== 0 ){
+      if (Object.keys(this.model).length != 0){
+        this._doctorService
+        .createDoctor(this.model)
         .subscribe(()=> this.goBack());
-        this._doctorService.getAllDoctor();
+
+        this.eventDoctor.emit(this.model);
+        this.statusProcess = "Add Data is Success!";
+      }
+
+    } else{
+      this._doctorService
+      .updateDoctor(this.model)
+      .subscribe(()=> this.goBack());
+
+      this.eventDoctor.emit(this.model);
+      this.statusProcess = "Save Data is Success!";
+    }
   }
   
   goBack(){
     this._doctorService.getAllDoctor();
     this.router.navigate(['/masterdata/doctor/home']);
+  }
+
+  tonggleAddReset(){
+    this.model = new DoctorModel();
+    this.statusProcess = '';
   }
 
 }

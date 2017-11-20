@@ -1,8 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a class="btn btn-info" (click)="goBack()">
-            <i class="fa fa-plus-square-o"></i>
-            Cancel</a> 
+      <b>{{statusProcess}}</b>
     </div>
     <div class="panel-body">
       <form class="form-horizontal" (submit)="updateDoctor()">
@@ -45,12 +43,12 @@
             <input type="text" class="form-control"  [(ngModel)]="model.doctorCode" name="doctorCode">
           </div>
         </div>
-  
+
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-success">Update</button>
-      </div>
-     
+      <div class="text-center">
+        <button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Save</button>
+        <button class="btn btn-info" (click)="tonggleAddReset()"><i class="fa fa-plus-square-o"></i> Reset</button> 
+      </div>   
     </div>
   </form>
   
