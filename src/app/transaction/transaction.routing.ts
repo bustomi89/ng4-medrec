@@ -9,6 +9,11 @@ export const routes: Routes = [
   {
     path: 'registration',
     loadChildren:'./registration/registration.module#RegistrationModule',
+  },
+  {
+    path: 'hospital',
+    loadChildren:'./hospital/hospital.module#HospitalModule',
+     
   }
 ];
 

@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <b>{{statusProcess}}</b> 
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" (submit)="updateHospital()">
+      <input type="hidden" class="form-control"  [(ngModel)]="model.treatmentId" name="treatmentId">
+      <input type="hidden" class="form-control"  [(ngModel)]="model.petId" name="petId">
+      <div class="form-group">
+        <label for="position" class="col-sm-2 control-label">Treatment Plan : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" [(ngModel)]="model.treatmentPlan" name="treatmentPlan">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="department" class="col-sm-2 control-label">Recommendation : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control"  [(ngModel)]="model.recommendation" name="recommendation">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">Reminder : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control"  [(ngModel)]="model.reminder" name="reminder">
+        </div>
+      </div>
+
+  <div class="form-group">
+    <div class="text-center">
+      <button type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Save</button>
+      <button class="btn btn-info" (click)="tonggleAddReset()"><i class="fa fa-plus-square-o"></i> Reset</button> 
+    </div>
+   
+  </div>
+</form>
+
+  </div>
+</div>

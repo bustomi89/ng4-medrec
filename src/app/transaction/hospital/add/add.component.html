@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <a class="btn btn-info" (click)="goBack()">
+          <i class="fa fa-plus-square-o"></i>
+          Back</a> 
+  </div>
+<div class="panel-body">
+  <form class="form-horizontal" (submit)="addHospital()">
+    <input type="hidden" class="form-control"  [(ngModel)]="model.treatmentId" name="treatmentId">
+    <input type="hidden" class="form-control"  [(ngModel)]="model.petId" name="petId">
+    <div class="form-group">
+      <label for="position" class="col-sm-2 control-label">Treatment Plan : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" [(ngModel)]="model.treatmentPlan" name="treatmentPlan">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="department" class="col-sm-2 control-label">Recommendation : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control"  [(ngModel)]="model.recommendation" name="recommendation">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="salary" class="col-sm-2 control-label">Reminder : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control"  [(ngModel)]="model.reminder" name="reminder">
+      </div>
+    </div>
+    <div class="form-group">
+
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    
+    </div>
+  </form>
+
+</div>
+</div>
