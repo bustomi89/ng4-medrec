@@ -6,34 +6,169 @@
   </div>
 <div class="panel-body">
   <form class="form-horizontal" (submit)="addHospital()">
-    <input type="hidden" class="form-control"  [(ngModel)]="model.treatmentId" name="treatmentId">
-    <input type="hidden" class="form-control"  [(ngModel)]="model.petId" name="petId">
-    <div class="form-group">
-      <label for="position" class="col-sm-2 control-label">Treatment Plan : </label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" [(ngModel)]="model.treatmentPlan" name="treatmentPlan">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="department" class="col-sm-2 control-label">Recommendation : </label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control"  [(ngModel)]="model.recommendation" name="recommendation">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="salary" class="col-sm-2 control-label">Reminder : </label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control"  [(ngModel)]="model.reminder" name="reminder">
-      </div>
-    </div>
-    <div class="form-group">
+      <input type="hidden" class="form-control"  [(ngModel)]="hospital.treatmentId" name="treatmentId">
+              <div class="form-group col-xs-12 col-md-12">
+                <label for="department" class="control-label small"><b>Pet Id</b></label>
+                  <input type="text" class="form-control"  [(ngModel)]="hospital.petId" name="petId">
+              </div>
+              <div class="form-group col-xs-12 col-md-12">
+                <label for="department" class="control-label small"><b>Treatment Plan</b></label>
+                  <input type="text" class="form-control"  [(ngModel)]="hospital.treatmentPlan" name="treatmentPlan">
+              </div>
+              <div class="form-group col-xs-12 col-md-12">
+                <label for="salary" class="control-label small"><b>Recommendation</b></label>
+                  <input type="text" class="form-control"  [(ngModel)]="hospital.recommendation" name="recommendation">
+              </div>
+              <a class="btn btn-danger" (click)="modalTreatmentDetail()" > Add </a>
 
-      <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-success">Save</button>
-      </div>
-    
-    </div>
-  </form>
+              <ngx-datatable              
+                style="height: 50vh" 
+
+                    #myTableDetail
+                    class='table-striped'
+                    [columnMode]="'force'"
+                    [headerHeight]="40"
+                    [footerHeight]="45"
+                    [rowHeight]="35"
+                    [scrollbarV]="35"
+                    [rows]="treatmentDetailArray"
+
+                    [cssClasses]= "{
+                        sortAscending: 'fa fa-sort-up',
+                        sortDescending: 'fa fa-sort-down',
+                        pagerLeftArrow: 'fa  fa-angle-left',
+                        pagerRightArrow: 'fa fa-angle-right',
+                        pagerPrevious: 'fa fa-angle-double-left',
+                        pagerNext: 'fa fa-angle-double-right'
+                    }"
+                    (page)="onPage($event)"
+                    [selected]="selected"
+                    [selectionType]="'single'"
+                    
+                    (select)='onSelect($event)'>
+                    <ngx-datatable-column
+                    [width]="105"
+                    [resizeable]="false"
+                    [sortable]="false"
+                    [draggable]="false"
+                    [canAutoResize]="false">
+                    <ng-template class="xxxx" let-row="row" ngx-datatable-cell-template>
+                        <a class="btn btn-info btn-xs btn-view fa"
+                            [class.fa-plus]="!row.$$expanded"
+                            [class.fa-minus]="row.$$expanded"
+                            title="Expand/Collapse Row"
+                            (click)="toggleExpandRow(row)">
+                        </a>
+                        <a class="btn btn-danger btn-xs btn-view fa"
+                            [class.fa-remove]="true"
+                            title="delete"
+                            (click)="toggleDelete(row)">
+                        </a>
+                    </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="treatmentId" [width]="300">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        <strong>{{value}}</strong>
+                    </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="treatmentType" [width]="300">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <i [innerHTML]="row['treatmentType']"></i>
+                    </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="doctorId" [width]="300">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <i [innerHTML]="row['doctorId']"></i>
+                    </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+              
+            
+<div class="form-group">
+  <div class="text-center">
+    <button type="submit" class="btn btn-success">Save</button>
+    <!-- <a  class="btn btn-info" (click)="goBack()">Cancel</a> -->
+  </div>
+</div>
+</form>
 
 </div>
 </div>
+
+<div bsModal #mdModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="mdModal.hide()" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <img src="assets/img/logo.png" width="150" alt="SmartAdmin">
+                </h4>
+            </div>
+            <div class="modal-body no-padding">
+                <form #f="ngForm" class="smart-form" (ngSubmit)="onSubmit($event)">
+                  <fieldset>
+                      <div class="row">                                            
+                          <label class="label col col-4">Treatment Type</label>
+                          <section class="col col-8">
+                              <label [ngClass]="{'input':true, 'state-success':treatmentTypeForm?.valid, 'state-error':treatmentTypeForm?.invalid}">
+                                              <i class="icon-append fa fa-user"></i>                                    
+                                          <input type="hidden" name="treatmentDetailId" #treatmentDetailIdForm="ngModel" [(ngModel)]="treatmentDetailId" ngModel/>
+                                          <input type="hidden" name="treatmentId" #treatmentIdForm="ngModel" [(ngModel)]="treatmentId" ngModel/>
+                                          <input type="text" name="treatmentType" #treatmentTypeForm="ngModel" [(ngModel)]="treatmentType" placeholder="Please input this field" required ngModel/>	
+                                          </label>
+                              <span *ngIf="treatmentTypeForm.errors?.required" class="help-block has-error"><i class="fa fa-warning"></i>This field required</span>
+                          </section>
+                      </div>
+                      <div class="row">                                            
+                          <label class="label col col-4">treatmentDate</label>
+                          <section class="col col-8">
+                              <label [ngClass]="{'input':true, 'state-success':treatmentDateForm?.valid, 'state-error':treatmentDateForm?.invalid}">
+                                              <i class="icon-append fa fa-user"></i>                                    
+                                          <input type="text" name="treatmentDate" #treatmentDateForm="ngModel" [(ngModel)]="treatmentDate" placeholder="Please input this field" required ngModel/>	
+                                          </label>
+                              <span *ngIf="treatmentDateForm.errors?.required" class="help-block has-error"><i class="fa fa-warning"></i>This field required</span>
+                          </section>
+                      </div>
+                      <div class="row">                                            
+                          <label class="label col col-4">Doctor Id</label>
+                          <section class="col col-8">
+                              <label [ngClass]="{'input':true, 'state-success':doctorIdForm?.valid, 'state-error':doctorIdForm?.invalid}">
+                                              <i class="icon-append fa fa-user"></i>                                    
+                                          <input type="text" name="doctorId" #doctorIdForm="ngModel" [(ngModel)]="doctorId" placeholder="Please input this field" required ngModel/>	
+                                          </label>
+                              <span *ngIf="doctorIdForm.errors?.required" class="help-block has-error"><i class="fa fa-warning"></i>This field required</span>
+                          </section>
+                      </div>
+                      <div class="row">                                            
+                        <label class="label col col-4">Receipt</label>
+                        <section class="col col-8">
+                            <label [ngClass]="{'input':true, 'state-success':receiptForm?.valid, 'state-error':receiptForm?.invalid}">
+                                            <i class="icon-append fa fa-user"></i>                                    
+                                        <input type="text" name="receipt" #receiptForm="ngModel" [(ngModel)]="receipt" placeholder="Please input this field" required ngModel/>	
+                                        </label>
+                            <span *ngIf="receiptForm.errors?.required" class="help-block has-error"><i class="fa fa-warning"></i>This field required</span>
+                        </section>
+                    </div>
+                    <div class="row">                                            
+                      <label class="label col col-4">Note</label>
+                      <section class="col col-8">
+                          <label [ngClass]="{'input':true, 'state-success':noteForm?.valid, 'state-error':noteForm?.invalid}">
+                                          <i class="icon-append fa fa-user"></i>                                    
+                                      <input type="text" name="note" #noteForm="ngModel" [(ngModel)]="note" placeholder="Please input this field" required ngModel/>	
+                                      </label>
+                          <span *ngIf="noteForm.errors?.required" class="help-block has-error"><i class="fa fa-warning"></i>This field required</span>
+                      </section>
+                  </div>
+                  </fieldset>
+  
+                <footer> 
+                        <button type="submit" class="btn btn-primary" [disabled]="f.invalid || f.pending">Submit</button>
+                </footer>
+                </form>
+            </div>
+  
+        </div>
+    </div>
+  </div>

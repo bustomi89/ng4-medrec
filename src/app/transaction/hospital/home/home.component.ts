@@ -177,24 +177,21 @@ export class HomeComponent implements OnInit {
   }
 
   toggleDelete(row) {
-    this.flag_delete= true;
-    
-    if (this.statusFormEdit == true){
-      this.statusFormEdit = false;
-    } else {
-      this.statusFormEdit = false;
-      this.editHospital.tonggleAddReset();
-    }
+    this._hospitalService
+    .deleteHospitalById(row.treatmentId)
+    .subscribe(() => {
+      this.getHospital();
+    } )
   }
 
-  tonggleAdd(){
-    if (this.statusFormEdit == false){
-      this.statusFormEdit = true;
-    } else {
-      this.statusFormEdit = true;
-      this.editHospital.tonggleAddReset();
-    }
+  // tonggleAdd(){
+  //   if (this.statusFormEdit == false){
+  //     this.statusFormEdit = true;
+  //   } else {
+  //     this.statusFormEdit = true;
+  //     this.editHospital.tonggleAddReset();
+  //   }
     
-  }
+  // }
 
 }

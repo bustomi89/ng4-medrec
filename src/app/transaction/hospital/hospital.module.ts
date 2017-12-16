@@ -11,6 +11,7 @@ import { EditComponent } from 'app/transaction/hospital/edit/edit.component';
 import { HomeComponent } from 'app/transaction/hospital/home/home.component';
 import { ShowComponent } from 'app/transaction/hospital/show/show.component';
 import { HospitalService } from 'app/transaction/hospital/hospital.service';
+import { TreatmentDetailService } from 'app/transaction/hospital/treatment-detail.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { HospitalService } from 'app/transaction/hospital/hospital.service';
     TypeaheadModule.forRoot()
   ],
   declarations: [HospitalComponent, AddComponent, EditComponent, HomeComponent, ShowComponent],
-  providers: [HospitalService]
+  providers: [HospitalService, TreatmentDetailService]
 })
 export class HospitalModule { }

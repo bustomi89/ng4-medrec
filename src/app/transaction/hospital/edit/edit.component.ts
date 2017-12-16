@@ -1,7 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
 import { HospitalModel } from 'app/transaction/hospital/hospital.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HospitalService } from 'app/transaction/hospital/hospital.service';
+import { TreatmentDetailModel } from 'app/transaction/hospital/treatment-detail.model';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { ModalDirective } from 'ngx-bootstrap';
+import { TreatmentDetailService } from 'app/transaction/hospital/treatment-detail.service';
 
 @Component({
   selector: 'app-edit',
@@ -9,67 +13,86 @@ import { HospitalService } from 'app/transaction/hospital/hospital.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+  treatmentDetailId: any;
+  treatmentId: any;
+  treatmentType: any;
+  treatmentDate: any;
+  note: any;
+  doctorId: any;
+  receipt: any;
+  
+  treatmentDetailArray = [];
+  treatmentDetail = new TreatmentDetailModel();
+  customSelected: string;
+  t_treatmentId : number;
+  t_treatmentType : string;
+  hospital = new HospitalModel();
+  // model = new HospitalModel();
+
+  selected = [];
+  
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild('mdModal') modal:ModalDirective;
 
   @Input() indexTreatmentId: number;
-  
-    @Output() eventHospital = new EventEmitter<HospitalModel>();
+  @Output() eventHospital = new EventEmitter<HospitalModel>();
     
     statusProcess : string;
     
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private _hospitalService: HospitalService
+      private _hospitalService: HospitalService,
+      private _TreatmentDetailService: TreatmentDetailService
     ) { }
   
     ngOnInit() {
       this.route.params
       .subscribe(
         (params: Params) => {
-          if (this.indexTreatmentId != undefined || this.indexTreatmentId != null){
-            this.getSingleHospital(this.indexTreatmentId);
-          }
+          this.indexTreatmentId = +params['id']; // casting dari string ke number
+          this.getSingleHospital(this.route.snapshot.params['id']);
+          // if (this.indexTreatmentId != undefined || this.indexTreatmentId != null){
+          //   this.getSingleHospital(this.indexTreatmentId);
+          // }
         }
       )
     }
   
-    ngOnChanges(change: SimpleChanges): void { 
-      if (this.indexTreatmentId != undefined || this.indexTreatmentId != null){
-      this.getSingleHospital(change.indexTreatmentId.currentValue);
-        this.statusProcess = '';
-      }
-    }
+    // ngOnChanges(change: SimpleChanges): void { 
+    //   if (this.indexTreatmentId != undefined || this.indexTreatmentId != null){
+    //   this.getSingleHospital(change.indexTreatmentId.currentValue);
+    //     this.statusProcess = '';
+    //   }
+    // }
   
     //model:any={};
-    model = new HospitalModel();
     
-    
-  
     getSingleHospital(id){
       this._hospitalService
         .getHospitalById(id)
         .subscribe(hospital =>{
-            this.model = hospital;
+            this.hospital = hospital;
             })
     };
     
     updateHospital(){
-      if(this.model.treatmentId == null || this.model.treatmentId== 0 ){
-        if (Object.keys(this.model).length != 0){
+      if(this.hospital.treatmentId == null || this.hospital.treatmentId== 0 ){
+        if (Object.keys(this.hospital).length != 0){
           this._hospitalService
-          .createHospital(this.model)
+          .createHospital(this.hospital)
           .subscribe(()=> this.goBack());
   
-          this.eventHospital.emit(this.model);
+          this.eventHospital.emit(this.hospital);
           this.statusProcess = "Add Data is Success!";
         }
   
       } else{
         this._hospitalService
-        .updateHospital(this.model)
+        .updateHospital(this.hospital)
         .subscribe(()=> this.goBack());
   
-        this.eventHospital.emit(this.model);
+        this.eventHospital.emit(this.hospital);
         this.statusProcess = "Save Data is Success!";
       }
     }
@@ -80,8 +103,50 @@ export class EditComponent implements OnInit {
     }
   
     tonggleAddReset(){
-      this.model = new HospitalModel();
+      this.hospital = new HospitalModel();
       this.statusProcess = '';
     }
 
+    onSubmit($event){
+      
+      if (this.treatmentDetailId == null) {
+        let countArray = this.treatmentDetailArray.length;
+        this.treatmentDetailArray.push($event);
+    
+        this.treatmentDetailArray[countArray].doctorId = this.doctorId;
+        this.treatmentDetailArray[countArray].note = this.note;
+        this.treatmentDetailArray[countArray].receipt = this.receipt;
+        this.treatmentDetailArray[countArray].treatmentDate = this.treatmentDate;
+        this.treatmentDetailArray[countArray].treatmentId = this.treatmentId;
+        this.treatmentDetailArray[countArray].treatmentType = this.treatmentType;
+      } else {
+        for(let i=0; i < this.treatmentDetailArray.length; i++){
+          if (this.treatmentDetailArray[i].treatmentId == this.treatmentId){
+            this.treatmentDetailArray[i].doctorId = this.doctorId;
+            this.treatmentDetailArray[i].note = this.note;
+            this.treatmentDetailArray[i].receipt = this.receipt;
+            this.treatmentDetailArray[i].treatmentDate = this.treatmentDate;
+            this.treatmentDetailArray[i].treatmentId = this.treatmentId;
+            this.treatmentDetailArray[i].treatmentType = this.treatmentType;
+          }
+        }
+      }
+      
+      
+      // alert(this.doctorId + this.note + this.receipt + this.treatmentDate + this.treatmentId + this.treatmentType);
+      // this._TreatmentDetailService
+      // .createTreatmentDetail(this.treatmentDetail)
+      // .subscribe(()=> this.modal.hide());
+      this.table.ngDoCheck();
+      this.modal.hide();
+    }
+
+    modalTreatmentDetail() {
+      this.doctorId = null;
+      this.treatmentDate = null;
+      this.treatmentType = null;
+      this.note = null;
+      this.receipt = null;
+      this.modal.show();
+    }
 }
