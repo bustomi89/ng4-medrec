@@ -73,12 +73,26 @@ export class EditComponent implements OnInit {
         .getHospitalById(id)
         .subscribe(hospital =>{
             this.hospital = hospital;
+            console.log(JSON.stringify(hospital));
+            // hospital.treatmentDetail.forEach(element => {
+              
+            // });
+            // this.treatmentDetailArray = hospital.treatmentDetail;
+            // console.log(hospital.treatmentDetail);
+            
+            hospital.treatmentDetail.forEach(element => {
+              this.treatmentDetail = element;
+              this.treatmentDetailArray.push(this.treatmentDetail);  
+            });
+            
+
             })
     };
     
     updateHospital(){
       if(this.hospital.treatmentId == null || this.hospital.treatmentId== 0 ){
         if (Object.keys(this.hospital).length != 0){
+          this.hospital.treatmentDetail = this.treatmentDetailArray;
           this._hospitalService
           .createHospital(this.hospital)
           .subscribe(()=> this.goBack());
@@ -88,6 +102,7 @@ export class EditComponent implements OnInit {
         }
   
       } else{
+        this.hospital.treatmentDetail = this.treatmentDetailArray;
         this._hospitalService
         .updateHospital(this.hospital)
         .subscribe(()=> this.goBack());
@@ -117,16 +132,16 @@ export class EditComponent implements OnInit {
         this.treatmentDetailArray[countArray].note = this.note;
         this.treatmentDetailArray[countArray].receipt = this.receipt;
         this.treatmentDetailArray[countArray].treatmentDate = this.treatmentDate;
-        this.treatmentDetailArray[countArray].treatmentId = this.treatmentId;
+        this.treatmentDetailArray[countArray].treatmentId = this.hospital.treatmentId;
         this.treatmentDetailArray[countArray].treatmentType = this.treatmentType;
       } else {
         for(let i=0; i < this.treatmentDetailArray.length; i++){
-          if (this.treatmentDetailArray[i].treatmentId == this.treatmentId){
+          if (this.treatmentDetailArray[i].treatmentId == this.hospital.treatmentId){
             this.treatmentDetailArray[i].doctorId = this.doctorId;
             this.treatmentDetailArray[i].note = this.note;
             this.treatmentDetailArray[i].receipt = this.receipt;
             this.treatmentDetailArray[i].treatmentDate = this.treatmentDate;
-            this.treatmentDetailArray[i].treatmentId = this.treatmentId;
+            this.treatmentDetailArray[i].treatmentId = this.hospital.treatmentId;
             this.treatmentDetailArray[i].treatmentType = this.treatmentType;
           }
         }

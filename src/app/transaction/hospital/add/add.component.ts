@@ -92,6 +92,7 @@ export class AddComponent implements OnInit {
     }
 
   addHospital() {
+    this.hospital.treatmentDetail = this.treatmentDetailArray;
     this._HospitalService
     .createHospital(this.hospital)
     .subscribe(()=> this.goBack());
@@ -115,7 +116,7 @@ export class AddComponent implements OnInit {
     this.treatmentDetailArray[countArray].note = this.note;
     this.treatmentDetailArray[countArray].receipt = this.receipt;
     this.treatmentDetailArray[countArray].treatmentDate = this.treatmentDate;
-    this.treatmentDetailArray[countArray].treatmentId = this.treatmentId;
+    this.treatmentDetailArray[countArray].treatmentId = this.hospital.treatmentId;
     this.treatmentDetailArray[countArray].treatmentType = this.treatmentType;
     
     // alert(this.doctorId + this.note + this.receipt + this.treatmentDate + this.treatmentId + this.treatmentType);
